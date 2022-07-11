@@ -1,0 +1,67 @@
+<br>
+<div class="container mt-5">
+    <h1> </h1>
+    <!-- previsualizacion de imagen -->
+    <div *ngIf="previsualizacion"> 
+        <img [src]="previsualizacion">
+        </div>  
+  <br>
+     <form class="formualrio" [formGroup]="userForm" (submit)="captureInfo()">
+    <input type="hidden" formControlName = "id">
+        <div class="container mb-3">
+
+            <input type="text" formControlName="name" 
+            class="form-control" placeholder="Nombres " required>
+        </div>
+
+        <div class="container mb-3">
+
+            <input type="text" formControlName="lastanme"  
+            class="form-control" placeholder="Apellidos ">
+        </div>
+
+        <div class="container mb-3">
+
+            <input type="email" formControlName="email" 
+            class="form-control" placeholder="alguien@example.com ">
+        </div>
+
+         <div class="container mb-3">
+        <input type="password" pattern=".{8,}" formControlName="password" 
+            class="form-control" >
+        </div> 
+        
+        
+         <div class="container mb-3">
+            <label >rol</label>
+          <select  class="form-control"  formControlName="rol">
+              <option value="admin">admin</option>
+              <option value="visitante">visitante</option>
+    
+          </select> 
+         </div>
+        
+<!--        
+        <div class="container mb-3">
+              
+            <input type="text" formControlName="sinopsis" 
+            class="form-control" placeholder="SINOPSIS ">
+        </div> -->
+
+
+                <!-- carga de imagen -->
+      <div class="container mb-3">
+        <input (change)="capturarFile($event)" type="file"
+         class="form-control" >
+     </div>
+
+   
+        <div class="container mb-3">
+           <button class="btn btn-dark btn-sm"> Enviar</button>
+            <button style="margin-left: 5px;" class="btn btn-dark btn-sm" routerLink="/admin"> Volver</button>
+
+        </div>
+
+        <br>
+    </form>
+</div>
