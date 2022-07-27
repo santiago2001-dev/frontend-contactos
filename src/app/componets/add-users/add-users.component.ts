@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 //liberia para convertir archivo a base 64
 import { DomSanitizer } from '@angular/platform-browser';
 
-
+//models 
+import {Users}  from 'src/app/models/users'
 @Component({
   selector: 'app-add-users',
   templateUrl: './add-users.component.html',
@@ -28,13 +29,15 @@ userForm : FormGroup;
     this.userForm = this.fb.group ({
       id : ['',Validators.required],
       name: ['',Validators.required],
-      lastanme : ['',Validators.required],
-      email: ['',Validators.required,Validators.email],
-      password : ['',Validators.minLength(8)],
+      lastname : ['',Validators.required],
+      email: ['',[Validators.email,Validators.required]],
+      password : ['',[Validators.minLength(8),Validators.required,Validators.pattern]],
       rol : ['',Validators.required]
 
 
     })
+
+
 
    }
 
@@ -45,11 +48,32 @@ userForm : FormGroup;
 
 
 
-captureInfo(){
-  console.log(this.userForm);
+
+
+addUser(){
+if(this.userForm.valid){
+  const USERS :Users ={
+    id : this.userForm.get('id')?.value,
+    name : this.userForm.get('name')?.value,
+    lastName  : this.userForm.get('lastname')?.value,
+    email  : this.userForm.get('email')?.value,
+    password  : this.userForm.get('pasword')?.value,
+    role  : this.userForm.get('role')?.value,
+    img : this.previsualizacion
+  };
+  console.log(USERS);
+}else{
+  console.log('no valido')
+
 }
 
 
+}
+
+get name (){return this.userForm.get('name');}
+get lastname (){return this.userForm.get('lastname');}
+get password (){return this.userForm.get('password');}
+get email (){return this.userForm.get('email');}
 
   capturarFile($event: any): any{
     const archivoCapturado  = $event.target.files[0]
