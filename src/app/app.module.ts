@@ -16,6 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 //animacion
 import { BrowserModule } from '@angular/platform-browser';
 
+;
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,11 @@ import { BrowserModule } from '@angular/platform-browser';
   
     AppRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -82,19 +82,11 @@
             
                 </select> 
          </div>
-        
-<!--        
-        <div class="container mb-3">
-              
-            <input type="text" formControlName="sinopsis" 
-            class="form-control" placeholder="SINOPSIS ">
-        </div> -->
 
 
                 <!-- carga de imagen -->
       <div class="container mb-3">
-        <input (change)="capturarFile($event)" type="file"
-         class="form-control" >
+        <input (change)="capturarFile($event)" type="file" class="form-control " formControlName="img" >
      </div>
 
    

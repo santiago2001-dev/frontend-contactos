@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 //liberia para convertir archivo a base 64
 import { DomSanitizer } from '@angular/platform-browser';
 
+import swal from 'sweetalert2';
 //models 
 import {Users}  from 'src/app/models/users'
 @Component({
@@ -19,7 +21,7 @@ userForm : FormGroup;
 
   constructor( 
     
-  
+    private router: Router,
     private fb : FormBuilder,
     private sanintezer : DomSanitizer,//libreria para pasar a base 64 
 
@@ -27,12 +29,13 @@ userForm : FormGroup;
     ) 
     {
     this.userForm = this.fb.group ({
-      id : ['',Validators.required],
+      
       name: ['',Validators.required],
       lastname : ['',Validators.required],
       email: ['',[Validators.email,Validators.required]],
       password : ['',[Validators.minLength(8),Validators.required,Validators.pattern]],
-      rol : ['',Validators.required]
+      rol : ['',Validators.required],
+      img : ['',Validators.required]
 
 
     })
@@ -51,7 +54,17 @@ userForm : FormGroup;
 
 
 addUser(){
-if(this.userForm.valid){
+  console.log(this.userForm)
+if(this.userForm.invalid){
+ 
+  swal.fire({
+    icon: 'error',
+    title: 'los campos son obligatorios',
+  
+  })
+
+
+}else{
   const USERS :Users ={
     id : this.userForm.get('id')?.value,
     name : this.userForm.get('name')?.value,
@@ -61,12 +74,16 @@ if(this.userForm.valid){
     role  : this.userForm.get('role')?.value,
     img : this.previsualizacion
   };
-  console.log(USERS);
-}else{
-  console.log('no valido')
-
+  swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Usuario agregado correctamente',
+    showConfirmButton: false,
+    timer: 1500
+  })
 }
 
+this.router.navigate(['/admin']); //redirección
 
 }
 
