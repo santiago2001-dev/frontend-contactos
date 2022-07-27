@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { DefaultValueAccessor, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+//liberia para convertir archivo a base 64
+import { DomSanitizer } from '@angular/platform-browser';
 
+import swal from 'sweetalert2';
+//models 
+import {Contacs} from 'src/app/models/contacts';
 @Component({
   selector: 'app-add-contact',
   templateUrl: './add-contact.component.html',
@@ -7,9 +14,125 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddContactComponent implements OnInit {
 
-  constructor() { }
+  public previsualizacion : string | any;
+  ContactForm :  FormGroup;
+
+ 
+  ngselect = "prpyecto";
+
+
+  constructor(
+    private router: Router,
+    private fb : FormBuilder,
+    private sanintezer : DomSanitizer,//libreria para pasar a base 64 
+    
+  ) {
+
+this.ContactForm = this.fb.group({
+
+name : ['',Validators.required],
+lastname : ['',Validators.required],
+email : ['',[Validators.required,Validators.email]],
+nameuser : ['',Validators.required],
+cargo : ['',Validators.required],
+area : ['',Validators.required],
+number : ['',[Validators.required,Validators.maxLength(10),Validators.minLength(10)]],
+proyecto : ['',Validators.required],
+img :['',Validators.required]
+
+})
+
+
+
+   }
 
   ngOnInit(): void {
   }
 
+
+
+  addContact(){
+    console.log(this.ContactForm)
+    if(this.ContactForm.invalid){
+ 
+      swal.fire({
+        icon: 'error',
+        title: 'los campos son obligatorios',
+      
+      })
+    
+    
+    }else{
+     const CONTACTS : Contacs ={
+
+    id : this. ContactForm.get('id')?.value,
+    name : this. ContactForm.get('name')?.value,
+    lastname  : this.ContactForm.get('lastname')?.value,
+    nameuser : this.ContactForm.get('nameuser')?.value,
+    email  : this. ContactForm.get('email')?.value,
+    cargo  : this.ContactForm.get('cargo')?.value,
+    area  : this.ContactForm.get('area')?.value,
+    proyecto  : this.ContactForm.get('proyecto')?.value,
+    number  : this.ContactForm.get('number')?.value,
+    img : this.previsualizacion
+
+      };
+      console.log(CONTACTS);
+      swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Usuario agregado correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    
+      this.router.navigate(['/admin']); //redirección
+    }
+    
+  }
+
+
+get name (){return this.ContactForm.get('name');}
+get lastname (){return this.ContactForm.get('lastname');}
+get nameuser (){return this.ContactForm.get('nameuser');}
+get email (){return this.ContactForm.get('email');}
+get number (){return this.ContactForm.get('number');}
+
+
+
+
+
+capturarFile($event: any): any{
+  const archivoCapturado  = $event.target.files[0]
+ //  this.archivos.push(archivoCapturado)
+  this.extrarBase64(archivoCapturado).then((imagen: any)=>{
+    this.previsualizacion = imagen.base
+    console.log(imagen);
+
+  })
+ 
+
 }
+
+
+extrarBase64 = async ($event: any) => new Promise((resolve, reject) =>  {
+ 
+  const usafeImg = window.URL.createObjectURL($event);
+  const image = this.sanintezer.bypassSecurityTrustUrl(usafeImg);
+  const reader = new FileReader();
+  reader.readAsDataURL($event);
+  reader.onload = () =>{
+    resolve({
+      base : reader.result
+    });
+  };
+  reader.onerror = error =>{
+    resolve({
+        base: null
+    });
+  };
+  
+
+
+}
+)}

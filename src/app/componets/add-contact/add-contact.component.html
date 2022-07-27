@@ -1,1 +1,173 @@
-<p>add-contact works!</p>
+<br>
+<div class="container mt-5" id="fondo">
+    <h1 class="title"> AGREGAR CONTACTO</h1>
+    <!-- previsualizacion de imagen -->
+    <div *ngIf="previsualizacion"> 
+        <img [src]="previsualizacion">
+        </div>  
+  <br>
+     <form class="form" [formGroup]="ContactForm" (submit)="addContact()">
+    <input type="hidden" formControlName = "id">
+
+        <div class="container mb-3">
+
+            <input type="text" formControlName="name" class="form-control" placeholder="Nombres " required>
+            <div class="text-danger"*ngIf="name?.dirty &&(name?.dirty || name?.touched) && ContactForm.get('name')?.hasError('required')">
+                <!-- <div class="text-danger"*ngIf="userForm.get('name')?.hasError('required')"> -->
+                <span>Los nombres son <strong>obligatorios</strong></span>
+                </div>
+              
+            
+           
+        </div>
+
+        <div class="container mb-3">
+
+            <input type="text" formControlName="lastname" class="form-control" placeholder="Apellidos ">
+            <div class="text-danger"*ngIf="lastname?.dirty &&(lastname?.dirty || lastname?.touched) && ContactForm.get('lastname')?.hasError('required')">
+                <!-- <div class="text-danger"*ngIf="userForm.get('lastname')?.hasError('required')"> -->
+                <span>el correo es <strong>obligatorio</strong></span>
+                </div>
+              
+            
+        </div>
+        
+
+        <div class="container mb-3">
+
+            <input type="email" formControlName="email" 
+            class="form-control" placeholder="alguien@example.com ">
+            <div *ngIf="email?.dirty &&(email?.dirty || email?.touched)">
+            <div class="text-danger"*ngIf="ContactForm.get('email')?.hasError('required')">
+            <span>el correo es <strong>obligatorio</strong></span>
+            </div>
+            <div class="text-danger"
+            *ngIf="ContactForm.get('email')?.hasError('email')">
+            <span>debe propocionar un correo <strong>válido</strong></span>
+            </div>
+        </div>
+        </div>
+
+            
+        
+
+         <div class="container mb-3">
+             <input type="text" pattern=".{8,}" placeholder="nombre de usuario" formControlName="nameuser" class="form-control" >
+             <div *ngIf="nameuser?.dirty &&(nameuser?.dirty || nameuser?.touched)">
+            <div class="text-danger" *ngIf="ContactForm.get('nameuser')?.hasError('required')">
+                <span>el nombre de usuario es  <strong>obligatorio</strong></span>
+                </div> 
+
+                
+             </div> 
+                
+                </div>
+
+
+                <div class="container mb-3">
+                    <input type="tel" pattern=".{8,}" placeholder="celular" formControlName="number" class="form-control" >
+                    <div *ngIf="number?.dirty &&(number?.dirty || number?.touched)">
+                     <div class="text-danger" *ngIf="ContactForm.get('number')?.hasError('required')">
+                       <span>el número es  <strong>obligatorio</strong></span>
+                       </div> 
+                       <div class="text-danger" *ngIf="ContactForm.get('number')?.hasError('minlength')">
+                       <strong>el numero dete tener 10 digitos  </strong>
+                       </div>
+                       
+                       
+                    </div> 
+                       
+                       </div>
+
+
+                <div class="container mb-3">
+                    <select  class="form-control"  placeholder="cargo" formControlName="cargo" >
+                    <option value="Cargo Externo, Nuevo u Otro no listado">Cargo Externo, Nuevo u Otro no listado</option>
+                    <option value="Presidencia">Presidencia</option>
+                    <option value="Dirección Administrativa, Financiera y Contable">Dirección Administrativa, Financiera y Contable</option>
+                    <option value="Dirección Jurídica">Dirección Jurídica</option>
+                    <option value="Dirección desarrollo de Negocio">Dirección desarrollo de Negocio</option>
+                    <option value="Coordinador TIC">Coordinador TIC</option>
+                    <option value="Subdirección Jurídica">Subdirección Jurídica</option>
+                    <option value="Ingeniero Comercial">Ingeniero Comercial</option>
+                    <option value="Jefe de Ingeniería">Jefe de Ingeniería</option>
+                    <option value="Profesional de Compras de Synermetrix">Profesional de Compras de Synermetrix</option>
+                    <option value="Auxiliar de Diseño">Auxiliar de Diseño</option>
+                    <option value="Auxiliar de Infraestructura">Auxiliar de Infraestructura</option>
+                    <option value="Operador de Infraestructura">Operador de Infraestructura</option>
+                    <option value="Gestor Documental del Sistema">Gestor Documental del Sistema</option>
+                    <option value="Operador de Tecnología en La Información">Operador de Tecnología en La Información</option>
+                    <option value="Líder Tecnología de La Información">Líder Tecnología de La Información</option>
+                    <option value="Líder del Sisema de Gestión Integral">Líder del Sisema de Gestión Integral</option>
+                    <option value="Líder Productos Digitales">Líder Productos Digitales</option>
+                    <option value="Coordinador PQR">Coordinador PQR</option>
+                    <option value="Recepción">Recepción</option>
+                    <option value="Apoyo Documental">Apoyo Documental</option>
+                    <option value="Analisis de Adquisiciones">Analisis de Adquisiciones</option>
+                    <option value="Asistencia Contable">Asistencia Contable</option>
+                    <option value="Asistencia de Laboratorio">Asistencia de Laboratorio</option>
+                    <option value="Subdireción de Ingenieria e Implementación">Subdireción de Ingenieria e Implementación</option>
+                    <option value="Gerencia de Proyectos">Gerencia de Proyectos</option>
+                    <option value="Ingeniero de Soporte">Ingeniero de Soporte</option>
+                    <option value="Abogado Comercial">Abogado Comercial</option>
+                    <option value="Profesional de Procesos">Profesional de Procesos</option>
+                    <option value="Coordinación de Proyectos">Coordinación de Proyectos</option>
+                    <option value="Contador">Contador</option>
+                    <option value="Subdireccción Administrativa y de Talento Humano">Subdireccción Administrativa y de Talento Humano</option>
+                   
+            
+                </select> 
+         </div>
+        
+       
+         
+         <div class="container mb-3">
+         
+         <select  class="form-control"   aria-placeholder="proyecto" formControlName="proyecto">
+            
+            
+            <option value="bogota">bogotá</option>
+            <option value="barranquilla">barranquilla</option>
+            <option value="fusagasuga">fusagasugá</option>
+            <option value="soacha">soacha</option>
+            <option value="Calí">Calí</option>
+            <option value="Sincelejo">Sincelejo</option>
+            
+    
+        </select> 
+         </div>
+         
+         
+        <div class="container mb-3">
+                    
+            <select  class="form-control"  aria-placeholder="area" formControlName="area">
+                <option value=" Dirección Administrativa"> Dirección Administrativa</option>
+                <option value="Subdirección Administrativa Operativa (RRHH, Documental, SST, etc)">Subdirección Administrativa Operativa (RRHH, Documental, SST, etc)</option>
+                <option value="Subdirección Financiera y Contable">Subdirección Financiera y Contable</option>
+                <option value="Área Administrativa | Jurídica (Legal y Contractual)">Área Administrativa | Jurídica (Legal y Contractual)</option>
+                <option value="Área Administrativa | TIC (Ingeniería)">Área Administrativa | TIC (Ingeniería)</option>
+                <option value="Área Administrativa | SGI (Calidad y sistemas ISO)">Área Administrativa | SGI (Calidad y sistemas ISO)</option>
+                <option value="Vertical | Apoyo a la Gestión del Ingreso (SAR)">Vertical | Apoyo a la Gestión del Ingreso (SAR)</option>
+                <option value="Vertical | Proyectos de Ingeniería e Implementación">Vertical | Proyectos de Ingeniería e Implementación</option>
+                <option value="Vertical | Espacios Ciber-físicos (IoT)">Vertical | Espacios Ciber-físicos (IoT)</option>
+                <option value="Dirección de Estructuración y Desarrollo de Negocios">Dirección de Estructuración y Desarrollo de Negocios</option>
+            </select> 
+     </div>
+
+
+                <!-- carga de imagen -->
+      <div class="container mb-3">
+        <input (change)="capturarFile($event)" type="file" class="form-control " formControlName="img" >
+     </div>
+
+   
+        <div class="container mb-3">
+           <button class="btn btn-dark btn-sm"> Enviar</button>
+            <button style="margin-left: 5px;" class="btn btn-dark btn-sm" routerLink="/contact"> Volver</button>
+
+        </div>
+
+        <br>
+    </form>
+</div>
+

@@ -54,7 +54,7 @@ userForm : FormGroup;
 
 
 addUser(){
-  console.log(this.userForm)
+
 if(this.userForm.invalid){
  
   swal.fire({
@@ -81,9 +81,11 @@ if(this.userForm.invalid){
     showConfirmButton: false,
     timer: 1500
   })
+
+  this.router.navigate(['/admin']); //redirección
 }
 
-this.router.navigate(['/admin']); //redirección
+
 
 }
 
