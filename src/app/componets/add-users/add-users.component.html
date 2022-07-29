@@ -52,7 +52,7 @@
         
 
          <div class="container mb-3">
-             <input type="password" pattern=".{8,}" placeholder="contraseña" formControlName="password" class="form-control" >
+             <input type="password"  placeholder="contraseña" formControlName="password" class="form-control" >
              <div *ngIf="password?.dirty &&(password?.dirty || password?.touched)">
             <div class="text-danger" *ngIf="userForm.get('password')?.hasError('required')">
                 <span>la contraseña  es <strong>obligatoria</strong></span>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="container mb-3">
                     
-                <select  class="form-control"  aria-placeholder="rol" formControlName="rol">
+                <select  class="form-control"  aria-placeholder="rol" formControlName="role">
                     <option value="admin">admin</option>
                     <option value="visitante">visitante</option>
             

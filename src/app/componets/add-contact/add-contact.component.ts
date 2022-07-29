@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import swal from 'sweetalert2';
 //models 
 import {Contacs} from 'src/app/models/contacts';
+import {ContactsService} from 'src/app/services/contacts.service'
 @Component({
   selector: 'app-add-contact',
   templateUrl: './add-contact.component.html',
@@ -25,20 +26,20 @@ export class AddContactComponent implements OnInit {
     private router: Router,
     private fb : FormBuilder,
     private sanintezer : DomSanitizer,//libreria para pasar a base 64 
-    
+    private contactService : ContactsService    
   ) {
 
 this.ContactForm = this.fb.group({
-
-name : ['',Validators.required],
-lastname : ['',Validators.required],
-email : ['',[Validators.required,Validators.email]],
-nameuser : ['',Validators.required],
-cargo : ['',Validators.required],
-area : ['',Validators.required],
-number : ['',[Validators.required,Validators.maxLength(10),Validators.minLength(10)]],
-proyecto : ['',Validators.required],
-img :['',Validators.required]
+ id : [''],
+  name : ['',Validators.required],
+  lastname : ['',Validators.required],
+  email : ['',[Validators.required,Validators.email]],
+  nameuser : ['',Validators.required],
+  cargo : ['',Validators.required],
+  area : ['',Validators.required],
+  number : ['',[Validators.required,Validators.maxLength(10)]],
+  proyecto : ['',Validators.required],
+  img :['',Validators.required]
 
 })
 
@@ -77,16 +78,27 @@ img :['',Validators.required]
     img : this.previsualizacion
 
       };
-      console.log(CONTACTS);
-      swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Usuario agregado correctamente',
-        showConfirmButton: false,
-        timer: 1500
-      })
+
+      this.contactService.createContact(CONTACTS).subscribe(
+        data =>{
+          swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Usuario agregado correctamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        
+          this.router.navigate(['/admin']); //redirección 
+
+        },
+        error=>{
+          console.log(error)
+
+        }
+      )
+      
     
-      this.router.navigate(['/admin']); //redirección
     }
     
   }

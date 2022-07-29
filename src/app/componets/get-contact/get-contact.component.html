@@ -23,10 +23,10 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <form class="d-flex" > 
+          <form class="d-flex" [formGroup]="search" (submit)="getContacts()">
             <input formControlName="busqueda" class="form-control me-2" type="search" placeholder="Search"
               aria-label="Search">
-            <button class="btn|" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
        
            
@@ -40,12 +40,17 @@
           <tr>
                 
             <th scope="col">imagen</th>
-           <th scope="col"> id</th>
+            <th scope="col"> id</th>
             <th scope="col"> nombres </th>
             <th scope="col"> apellidos </th>
             <th scope="col"> correo </th>
-            <!-- <th scope="col"> contraseña </th> -->
-            <th scope="col">rol</th>
+            <th th scope="col">Nombre de Usuario</th>
+            <th th scope="col">cargo</th>
+            <th th scope="col">area</th>
+            <th th scope="col">proyecto</th>
+            <th th scope="col">celular</th>
+            <!-- <th th scope="col scope="col"> contraseña </th> -->
+            
   
 <th><button class="btn btn-dark btn-sm" routerLink="/admin/create-contact">NUEVO</button>
   
@@ -54,16 +59,19 @@
           </tr>
         </thead>
         <tbody >
-          <tr >
+          <tr *ngFor="let contact of listContacts">
             
-            <td scope="row"><img src=></td>
-            <td scope="col"></td>
-            <td scope="row"></td>
-            <td scope="row"></td>
-            <td scope="row"></td>
-            <td scope="row"></td>
-          
-            <td scope="row"></td>
+            <td scope="row"><img src= "{{contact.img}}"></td>
+            <td scope="col">{{contact.id}}</td>
+            <td scope="row">{{contact.name}}</td>
+            <td scope="row">{{contact.lastname}}</td>
+            <td scope="row">{{contact.email}}</td>
+            <td scope="row">{{contact.nameuser}}</td>
+            <td scope="row">{{contact.cargo}}</td>
+            <td scope="row">{{contact.area}}</td>
+            <td scope="row">{{contact.proyecto}}</td>
+            <td scope="row">{{contact.number}}</td>
+            
             <td>
               <div class="options">
                 <i class="fa-solid fa-trash"></i>

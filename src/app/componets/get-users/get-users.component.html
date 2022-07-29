@@ -23,12 +23,12 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <form class="d-flex" > 
+        
+          <form class="d-flex" [formGroup]="search" (submit)="getUsers()">
             <input formControlName="busqueda" class="form-control me-2" type="search" placeholder="Search"
               aria-label="Search">
-            <button class="btn|" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
-       
            
             
           </div>
@@ -54,16 +54,16 @@
           </tr>
         </thead>
         <tbody >
-          <tr >
+          <tr  *ngFor=" let users of listUsers">
             
-            <td scope="row"><img src=></td>
-            <td scope="col"></td>
-            <td scope="row"></td>
-            <td scope="row"></td>
-            <td scope="row"></td>
-            <td scope="row"></td>
+            <td scope="row"><img src= "{{users.img}}"></td>
+            <td scope="col">{{users.id}}</td>
+            <td scope="row">{{users.name}}</td>
+            <td scope="row">{{users.lastname}}</td>
+            <td scope="row">{{users.email}}</td>
+            <td scope="row">{{users.role}}</td>
           
-            <td scope="row"></td>
+            
             <td>
               <div class="options">
                 <i class="fa-solid fa-trash"></i>

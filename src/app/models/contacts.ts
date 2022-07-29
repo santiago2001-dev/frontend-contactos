@@ -26,3 +26,11 @@ constructor(id : number,name : string,lastname : string, email : string ,  nameu
 }
 
 }
+
+export class busqueda{
+    busqueda : string ;
+    constructor(busqueda : string){
+        this.busqueda = busqueda;
+
+    }
+}

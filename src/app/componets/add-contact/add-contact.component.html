@@ -52,7 +52,7 @@
         
 
          <div class="container mb-3">
-             <input type="text" pattern=".{8,}" placeholder="nombre de usuario" formControlName="nameuser" class="form-control" >
+             <input type="text"  placeholder="nombre de usuario" formControlName="nameuser" class="form-control" >
              <div *ngIf="nameuser?.dirty &&(nameuser?.dirty || nameuser?.touched)">
             <div class="text-danger" *ngIf="ContactForm.get('nameuser')?.hasError('required')">
                 <span>el nombre de usuario es  <strong>obligatorio</strong></span>
@@ -70,7 +70,7 @@
                      <div class="text-danger" *ngIf="ContactForm.get('number')?.hasError('required')">
                        <span>el número es  <strong>obligatorio</strong></span>
                        </div> 
-                       <div class="text-danger" *ngIf="ContactForm.get('number')?.hasError('minlength')">
+                       <div class="text-danger" *ngIf="ContactForm.get('number')?.hasError('maxlength')">
                        <strong>el numero dete tener 10 digitos  </strong>
                        </div>
                        

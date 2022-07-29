@@ -7,6 +7,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import swal from 'sweetalert2';
 //models 
 import {Users}  from 'src/app/models/users'
+import {ContactsService} from 'src/app/services/contacts.service'
+import { UsersService } from '../../services/users.service';
 @Component({
   selector: 'app-add-users',
   templateUrl: './add-users.component.html',
@@ -24,12 +26,12 @@ userForm : FormGroup;
     private router: Router,
     private fb : FormBuilder,
     private sanintezer : DomSanitizer,//libreria para pasar a base 64 
-
+    private userService : UsersService
   
     ) 
     {
     this.userForm = this.fb.group ({
-      
+      id: [], 
       name: ['',Validators.required],
       lastname : ['',Validators.required],
       email: ['',[Validators.email,Validators.required]],
@@ -54,6 +56,7 @@ userForm : FormGroup;
 
 
 addUser(){
+  console.log(this.userForm)
 
 if(this.userForm.invalid){
  
@@ -65,24 +68,46 @@ if(this.userForm.invalid){
 
 
 }else{
-  const USERS :Users ={
-    id : this.userForm.get('id')?.value,
+ 
+  const user :Users ={
+   
     name : this.userForm.get('name')?.value,
-    lastName  : this.userForm.get('lastname')?.value,
+    lastname  : this.userForm.get('lastname')?.value,
     email  : this.userForm.get('email')?.value,
-    password  : this.userForm.get('pasword')?.value,
+    password  : this.userForm.get('password')?.value,
     role  : this.userForm.get('role')?.value,
-    img : this.previsualizacion
+    img : this.previsualizacion,
+    id : this.userForm.get('id')?.value
   };
-  swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: 'Usuario agregado correctamente',
-    showConfirmButton: false,
-    timer: 1500
-  })
 
-  this.router.navigate(['/admin']); //redirección
+  this.userService.createUser(user).subscribe(
+    data=>{
+  
+      swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Usuario agregado correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
+      
+    this.router.navigate(['/admin']); //redirección
+    },
+    (error)=>{
+
+      console.log(error)
+      
+      swal.fire({
+        icon: 'error',
+        title: `algo salio mal intenta de nuevo`,
+      
+      })
+      
+    }
+  )
+
+
 }
 
 

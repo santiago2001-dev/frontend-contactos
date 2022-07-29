@@ -13,6 +13,8 @@ import { LoginComponent } from './componets/login/login.component';
 
 // imports
 import { ReactiveFormsModule } from '@angular/forms';
+//petciones http
+import {HttpClientModule} from '@angular/common/http';
 //animacion
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -31,11 +33,10 @@ import { BrowserModule } from '@angular/platform-browser';
   imports: [
     
     BrowserModule,
-  
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-
+    HttpClientModule
     
     
     
