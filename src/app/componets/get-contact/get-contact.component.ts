@@ -15,6 +15,7 @@ import { ThisReceiver } from '@angular/compiler';
 export class GetContactComponent implements OnInit {
 search: FormGroup
 listContacts : Contacs[] = []
+titulo = 'CREAR CONTACTO';
   constructor(
     private fb: FormBuilder,
     private router :Router,

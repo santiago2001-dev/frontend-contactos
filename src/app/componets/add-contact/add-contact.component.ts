@@ -8,6 +8,7 @@ import swal from 'sweetalert2';
 //models 
 import {Contacs} from 'src/app/models/contacts';
 import {ContactsService} from 'src/app/services/contacts.service'
+
 @Component({
   selector: 'app-add-contact',
   templateUrl: './add-contact.component.html',
@@ -17,20 +18,20 @@ export class AddContactComponent implements OnInit {
 
   public previsualizacion : string | any;
   ContactForm :  FormGroup;
-
- 
-  ngselect = "prpyecto";
-
+  Titulo = 'crear contacto'
+  Id  : String | null ; 
+  
 
   constructor(
     private router: Router,
     private fb : FormBuilder,
     private sanintezer : DomSanitizer,//libreria para pasar a base 64 
-    private contactService : ContactsService    
+    private contactService : ContactsService,
+    private aRouter  : ActivatedRoute    
   ) {
 
 this.ContactForm = this.fb.group({
- id : [''],
+  id : [''],
   name : ['',Validators.required],
   lastname : ['',Validators.required],
   email : ['',[Validators.required,Validators.email]],
@@ -43,17 +44,18 @@ this.ContactForm = this.fb.group({
 
 })
 
-
+this.Id = this.aRouter.snapshot.paramMap.get('id');
 
    }
 
   ngOnInit(): void {
+    this.esEditar()
   }
 
 
 
   addContact(){
-    console.log(this.ContactForm)
+    
     if(this.ContactForm.invalid){
  
       swal.fire({
@@ -79,28 +81,59 @@ this.ContactForm = this.fb.group({
 
       };
 
-      this.contactService.createContact(CONTACTS).subscribe(
-        data =>{
-          swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Usuario agregado correctamente',
-            showConfirmButton: false,
-            timer: 1500
-          })
+
+  if(this.Id!==null){  
+    this.contactService.updateContact(this.Id,CONTACTS).subscribe( data=>{
+      swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Usuario agregado correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })},
+
+      error=>{
+         swal.fire({
+          icon: 'error',
+          title: 'algo salio mal intenta de nuevo porfavor ',
         
-          this.router.navigate(['/admin']); //redirección 
+        })
+        this.ContactForm.reset(); //limpiar formulario
 
-        },
-        error=>{
-          console.log(error)
+      }
+    )
+    
+  }else{
 
-        }
-      )
+    this.contactService.createContact(CONTACTS).subscribe(
+      data =>{
+        swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Usuario agregado correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
       
+        this.router.navigate(['/admin']); //redirección 
+
+      },
+      error=>{
+        swal.fire({
+          icon: 'error',
+          title: 'algo salio mal intenta de nuevo porfavor ',
+        
+        })
+        this.ContactForm.reset(); //limpiar formulario
+
+      }
+    )
     
-    }
-    
+  
+  }
+
+
+  }
   }
 
 
@@ -147,4 +180,34 @@ extrarBase64 = async ($event: any) => new Promise((resolve, reject) =>  {
 
 
 }
-)}
+)
+
+esEditar(){
+
+  if(this.Id !== null){
+    this.Titulo = 'editar contacto';
+    this.contactService.getContacByid(this.Id).subscribe(
+      data =>{
+        console.log(data)
+        this.ContactForm.setValue({
+           name : data.name,
+           lastname : data.lastname,
+           email : data.email,
+           nameuser : data.nameuser,
+           cargo : data.cargo,
+           area : data.area,
+           number : data.number,
+           proyecto : data.proyecto
+
+          
+        })
+      },
+      error=>{
+        console.log(error)
+      }
+
+    )
+  }
+
+}
+}
