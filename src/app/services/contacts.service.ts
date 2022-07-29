@@ -35,12 +35,12 @@ createContact(contact :any){
 
 
 updateContact(id : any,contact : any) :Observable<any>{
-  return this.http.put(this.urlUpdate+id,contact)
+  return this.http.put(this.urlUpdate+'/'+id,contact)
 
 }
 
-getContacByid(nameuser : any):Observable<any>{
-  return this.http.get(this.urlContac+nameuser)
+getContacByid(id : any):Observable<any>{
+  return this.http.get(`${this.urlContac}/${id}`)
 
 }
 }

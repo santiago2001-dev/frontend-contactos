@@ -187,17 +187,20 @@ esEditar(){
   if(this.Id !== null){
     this.Titulo = 'editar contacto';
     this.contactService.getContacByid(this.Id).subscribe(
+
       data =>{
         console.log(data)
-        this.ContactForm.setValue({
-           name : data.name,
-           lastname : data.lastname,
-           email : data.email,
-           nameuser : data.nameuser,
-           cargo : data.cargo,
-           area : data.area,
-           number : data.number,
-           proyecto : data.proyecto
+        this.ContactForm.patchValue({
+           'id' : data.id,
+           'name' : data.name,
+           'lastname' : data.lastname,
+           'email' : data.email,
+           'nameuser' : data.nameuser,
+           'cargo' : data.cargo,
+           'area ': data.area,
+          ' number ': data.number,
+           'proyecto ': data.proyecto,
+          ' img' :data.img
 
           
         })
