@@ -191,16 +191,16 @@ esEditar(){
       data =>{
         console.log(data)
         this.ContactForm.patchValue({
-           'id' : data.id,
-           'name' : data.name,
-           'lastname' : data.lastname,
-           'email' : data.email,
-           'nameuser' : data.nameuser,
-           'cargo' : data.cargo,
-           'area ': data.area,
-          ' number ': data.number,
-           'proyecto ': data.proyecto,
-          ' img' :data.img
+           id:data[0].id,
+           name:data[0].name,
+           lastname:data[0].lastname,
+           email:data[0].email,
+           nameuser:data[0].nameuser,
+           cargo:data[0].cargo,
+           area:data[0].area,
+           number:data[0].number,
+           proyecto:data[0].proyecto,
+           img:data[0].img
 
           
         })
