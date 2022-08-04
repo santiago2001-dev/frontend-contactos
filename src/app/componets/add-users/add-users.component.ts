@@ -93,7 +93,7 @@ this.userService.updateUser(this.Id,user).subscribe(
       showConfirmButton: false,
       timer: 1500
     })
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/users']);
   },
   error=>{
     swal.fire({
@@ -121,7 +121,7 @@ this.userService.updateUser(this.Id,user).subscribe(
       })
 
       
-    this.router.navigate(['/admin']); //redirección
+    this.router.navigate(['/admin/users']); //redirección
     },
     (error)=>{
 

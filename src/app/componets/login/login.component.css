@@ -63,3 +63,14 @@ body {
   font-size: 75px;
   color: #4b6cb7;
 }
+
+.text-danger{
+
+  padding: 3px;
+  color: #721c24;
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  margin-bottom: 5px;
+  
+  }
+  

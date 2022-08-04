@@ -18,7 +18,8 @@ import {HttpClientModule} from '@angular/common/http';
 //animacion
 import { BrowserModule } from '@angular/platform-browser';
 
-;
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+
 
 
 @NgModule({
@@ -41,7 +42,9 @@ import { BrowserModule } from '@angular/platform-browser';
     
     
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [    //INYECTAMOS ESTE PROVIDE PARA VER EL VALOR DEL TOKEN
+  {provide: JWT_OPTIONS,useValue:JWT_OPTIONS},
+  JwtHelperService],
+  bootstrap: [AppComponent] 
 })
 export class AppModule { }
