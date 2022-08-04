@@ -90,15 +90,17 @@ this.Id = this.aRouter.snapshot.paramMap.get('id');
         title: 'Usuario agregado correctamente',
         showConfirmButton: false,
         timer: 1500
-      })},
-
+      })
+      this.router.navigate(['/admin']);
+    },
+      
       error=>{
          swal.fire({
           icon: 'error',
           title: 'algo salio mal intenta de nuevo porfavor ',
         
         })
-        this.ContactForm.reset(); //limpiar formulario
+   
 
       }
     )
@@ -189,7 +191,7 @@ esEditar(){
     this.contactService.getContacByid(this.Id).subscribe(
 
       data =>{
-        console.log(data)
+      
         this.ContactForm.patchValue({
            id:data[0].id,
            name:data[0].name,

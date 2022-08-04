@@ -19,14 +19,16 @@ export class AddUsersComponent implements OnInit {
 
 public previsualizacion : string | any;
 userForm : FormGroup;
-
+Id  : String | null ; 
+Titulo = 'Crear Usuario'
 
   constructor( 
     
     private router: Router,
     private fb : FormBuilder,
     private sanintezer : DomSanitizer,//libreria para pasar a base 64 
-    private userService : UsersService
+    private userService : UsersService,
+    private aRouter  : ActivatedRoute  
   
     ) 
     {
@@ -35,18 +37,19 @@ userForm : FormGroup;
       name: ['',Validators.required],
       lastname : ['',Validators.required],
       email: ['',[Validators.email,Validators.required]],
-      password : ['',[Validators.minLength(8),Validators.required,Validators.pattern]],
+      password : ['',[Validators.minLength(8),Validators.required]],
       rol : ['',Validators.required],
       img : ['',Validators.required]
 
 
     })
-
+    this.Id = this.aRouter.snapshot.paramMap.get('id');
 
 
    }
 
   ngOnInit(): void {
+    this.esEditar()
     
 
     }
@@ -75,10 +78,36 @@ if(this.userForm.invalid){
     lastname  : this.userForm.get('lastname')?.value,
     email  : this.userForm.get('email')?.value,
     password  : this.userForm.get('password')?.value,
-    role  : this.userForm.get('role')?.value,
+    role  : this.userForm.get('rol')?.value,
     img : this.previsualizacion,
     id : this.userForm.get('id')?.value
   };
+
+if(this.Id !== null){
+this.userService.updateUser(this.Id,user).subscribe(
+  data=>{
+    swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Usuario agregado correctamente',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    this.router.navigate(['/admin']);
+  },
+  error=>{
+    swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Usuario agregado correctamente',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    
+  }
+)
+
+}else{
 
   this.userService.createUser(user).subscribe(
     data=>{
@@ -106,7 +135,7 @@ if(this.userForm.invalid){
       
     }
   )
-
+  }
 
 }
 
@@ -147,9 +176,34 @@ extrarBase64 = async ($event: any) => new Promise((resolve, reject) =>  {
          base: null
      });
    };
-   
+  })
 
+
+esEditar(){
+
+
+  if(this.Id !==null){
+
+    this.Titulo = 'Editar Usuario'
+    this.userService.getUsrerByid(this.Id).subscribe(
+      data=>{
+        this.userForm.patchValue({
+          name:data[0].name,
+          lastname:data[0].lastname,
+          email:data[0].email,
+          password:data[0].password,
+          rol:data[0].role,
+          img:data[0].img,
+          id:data[0].id
+
+
+        })
+      }
+      
+    )
+ 
+  }
+}
 
 }
-)}
 

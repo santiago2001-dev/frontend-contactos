@@ -1,6 +1,6 @@
 <br>
 <div class="container mt-5" id="fondo">
-    <h1 class="title"> AGREGAR USUARIO</h1>
+    <h1 class="title"> {{Titulo}}</h1>
     <!-- previsualizacion de imagen -->
     <div *ngIf="previsualizacion"> 
         <img [src]="previsualizacion">
@@ -26,7 +26,7 @@
             <input type="text" formControlName="lastname" class="form-control" placeholder="Apellidos ">
             <div class="text-danger"*ngIf="lastname?.dirty &&(lastname?.dirty || lastname?.touched) && userForm.get('lastname')?.hasError('required')">
                 <!-- <div class="text-danger"*ngIf="userForm.get('lastname')?.hasError('required')"> -->
-                <span>el correo es <strong>obligatorio</strong></span>
+                <span>el apellido es <strong>obligatorio</strong></span>
                 </div>
               
             
@@ -76,7 +76,7 @@
                 </div>
                 <div class="container mb-3">
                     
-                <select  class="form-control"  aria-placeholder="rol" formControlName="role">
+                <select  class="form-control"  aria-placeholder="rol" formControlName="rol">
                     <option value="admin">admin</option>
                     <option value="visitante">visitante</option>
             
