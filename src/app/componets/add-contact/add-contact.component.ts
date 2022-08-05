@@ -117,7 +117,7 @@ this.Id = this.aRouter.snapshot.paramMap.get('id');
           timer: 1500
         })
       
-        this.router.navigate(['/admin']); //redirección 
+        this.router.navigate(['/admin/contact']); //redirección 
 
       },
       error=>{

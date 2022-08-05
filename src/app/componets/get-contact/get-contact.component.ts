@@ -72,6 +72,66 @@ titulo = 'CREAR CONTACTO';
     }   
 
 
-  }
+    
 
+  }
+  deleteContact(id : any){
+    const swalWithBootstrapButtons = swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: '¿estás seguro?',
+      text: "Una vez eiminado el contacto no podrá ser recuperado!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'si, deseo eliminarlo',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.ContacService.deleContact(id).subscribe(
+          data=>{
+          swalWithBootstrapButtons.fire(
+          'contacto eliminado!',
+          'el contacto ha sido eliminado correctamente',
+          'success'
+        )
+        this.router.navigate(['/admin/contact']); //redirección
+        this.getContacts()
+
+      },error=>{
+        swal.fire({
+          icon: 'error',
+          title: 'algo salio mal intenta de nuevo ',
+        
+        })
+
+
+      }
+      )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'operación cancelada',
+          'error'
+        )
+      }
+    })
+
+}
+
+
+closesecion(){
+  localStorage.removeItem('token')
+  this.router.navigate(['inicio'])
+}
 }

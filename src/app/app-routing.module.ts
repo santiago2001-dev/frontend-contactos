@@ -16,13 +16,13 @@ const routes: Routes = [
 {path : 'admin/users' ,component: GetUsersComponent,canActivate:[AuthGuard]},
 {path : 'home',component : HomeComponent},
 {path : 'inicio',component : LoginComponent},
-{path : 'admin/create-user',component: AddUsersComponent},
+{path : 'admin/create-user',component: AddUsersComponent,canActivate:[AuthGuard]},
 {path : 'admin/update-user/:id',component: AddUsersComponent,canActivate:[AuthGuard]},
 {path : 'admin/create-contact', component: AddContactComponent,canActivate:[AuthGuard]},
 {path : 'admin/update-contact/:id', component: AddContactComponent,canActivate:[AuthGuard]},
 
 
-//{path : '**',redirectTo : '',pathMatch : 'home'}
+
 
 ];
 

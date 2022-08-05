@@ -6,9 +6,10 @@
   
       <div class="menu">
         <a class="d-block text-light p-3" routerLink="/admin"><i class="fa-solid fa-table-list"></i> TABLERO</a>
-        <a class="d-block text-light p-3" routerLink="#"><i class="fa-solid fa-users"></i> USUARIOS</a>
+        <a class="d-block text-light p-3" routerLink="/admin/users"><i class="fa-solid fa-users"></i> USUARIOS</a>
         <a class="d-block  text-light p-3" routerLink=#><i class="fa-solid fa-address-card lead"></i>  PERFIL</a>
-        <a class="d-block  text-light p-3" routerLink="/"><i class="fa-solid fa-store"></i> CONTACTOS</a>
+        <a class="d-block  text-light p-3" routerLink="/admin/contact"><i class="fa-solid fa-store"></i> CONTACTOS</a>
+        <a class="d-block  text-light p-3" (click)="closesecion()" routerLink="#"><i class="fa-solid fa-right-from-bracket"></i> CERRAR SECIÓN</a>
        
     <!-- <a class="d-block  text-light p-3" (click)="closesecion()" routerLink="#"><i class="fa-solid fa-right-from-bracket"></i> CERRAR SECIÓN</a> -->
       
@@ -74,7 +75,7 @@
             
             <td>
               <div class="options">
-                <i class="fa-solid fa-trash"></i>
+                <i  (click)="deleteContact(contact.id)" class="fa-solid fa-trash"></i>
                 <br>
                 <i [routerLink]="['/admin/update-contact/',(contact.id)]" class="fa-solid fa-file-pen"></i>
   
