@@ -1,1 +1,54 @@
-<p>home works!</p>
+<!-- 
+    <nav>
+      <div class="navbar">
+        <div class="container nav-container">
+            <input class="checkbox" type="checkbox" name="" id="" />
+            <div class="hamburger-lines">
+              <span class="line line1"></span>
+              <span class="line line2"></span>
+              <span class="line line3"></span>
+            </div>  
+          <div class="logo">
+            <h1>CONTACTOS</h1>
+          </div>
+          <div class="menu-items">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">about</a></li>
+            <li><a href="#">blogs</a></li>
+            <li><a href="#">portfolio</a></li>
+            <li><a href="#">contact</a></li>
+          </div>
+        </div>
+      </div>
+    </nav> -->
+  
+
+  
+    <tr *ngFor="let contact of listContacts">
+            
+        <td scope="row"><img src= "{{contact.img}}"></td>
+        <td scope="col">{{contact.id}}</td>
+        <td scope="row">{{contact.name}}</td>
+        <td scope="row">{{contact.lastname}}</td>
+        <td scope="row">{{contact.email}}</td>
+        <td scope="row">{{contact.nameuser}}</td>
+        <td scope="row">{{contact.cargo}}</td>
+        <td scope="row">{{contact.area}}</td>
+        <td scope="row">{{contact.proyecto}}</td>
+        <td scope="row">{{contact.number}}</td>
+        
+        <td>
+     
+    <section *ngFor="let contact of listContacts" class="card">
+      <img src="{{contact.img}}">
+       <h4>{{contact.name}}</h4>
+       <h4>{{contact.lastname}}</h4>
+       <h4>{{contact.email}}</h4>
+       <h4>{{contact.number}}}</h4>
+       <h4>{{contact.cargo}}</h4>
+       <h4>{{contact.proyecto}}</h4>
+       <h4>{{contact.area}}</h4>
+     
+       <i class="fa-solid fa-cart-shopping"></i>
+        
+    </section>

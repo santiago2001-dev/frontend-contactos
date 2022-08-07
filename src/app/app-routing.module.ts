@@ -14,7 +14,7 @@ import{LoginComponent} from './componets/login/login.component'
 const routes: Routes = [
 {path : 'admin/contact',component : GetContactComponent,canActivate:[AuthGuard]},
 {path : 'admin/users' ,component: GetUsersComponent,canActivate:[AuthGuard]},
-{path : 'home',component : HomeComponent},
+{path : '',component : HomeComponent},
 {path : 'inicio',component : LoginComponent},
 {path : 'admin/create-user',component: AddUsersComponent,canActivate:[AuthGuard]},
 {path : 'admin/update-user/:id',component: AddUsersComponent,canActivate:[AuthGuard]},

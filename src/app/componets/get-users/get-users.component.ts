@@ -72,5 +72,63 @@ if (this.search.valid) {
 }
 
 }
+deleteContact(id : any){
+  const swalWithBootstrapButtons = swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+  
+  swalWithBootstrapButtons.fire({
+    title: '¿estás seguro?',
+    text: "Una vez eiminado el contacto no podrá ser recuperado!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'si, deseo eliminarlo',
+    cancelButtonText: 'No, cancelar!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
 
+      this.usersService.deleteUsers(id).subscribe(
+        data=>{
+        swalWithBootstrapButtons.fire(
+        'contacto eliminado!',
+        'el usuaario ha sido eliminado correctamente',
+        'success'
+      )
+      this.router.navigate(['/admin/contact']); //redirección
+      this.getUsers()
+
+    },error=>{
+      swal.fire({
+        icon: 'error',
+        title: 'algo salio mal intenta de nuevo ',
+      
+      })
+
+
+    }
+    )
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelado',
+        'operación cancelada',
+        'error'
+      )
+    }
+  })
+
+}
+
+
+closesecion(){
+  localStorage.removeItem('token')
+  this.router.navigate(['inicio'])
+}
 }

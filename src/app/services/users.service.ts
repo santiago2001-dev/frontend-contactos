@@ -12,6 +12,7 @@ export class UsersService {
   urlBusq = 'http://localhost:4040/api/users/search';
   urlAdd = 'http://localhost:4040/api/users/register';
   urlUpdate = 'http://localhost:4040/api/users/update'
+  urlDelete = 'http://localhost:4040/api/users/delete'
 
   constructor(
     private http : HttpClient
@@ -47,7 +48,10 @@ getUsrerByid(id : any):Observable<any>{
 return this.http.get(`${this.urlUsers}/${id}`)
 
 }
+deleteUsers(id: any):Observable<any>{
 
+  return this.http.delete(this.urlDelete+'/'+id)
+}
   }
   
 
