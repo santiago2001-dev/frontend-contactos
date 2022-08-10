@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { DefaultValueAccessor, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2';
 
 import {creden} from 'src/app/models/login'
 import {LoginService} from 'src/app/services/login.service'
+import { MSAL_GUARD_CONFIG, MsalGuardConfiguration, MsalService, MsalBroadcastService } from '@azure/msal-angular';
+import { PopupRequest, AuthenticationResult } from '@azure/msal-browser';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +15,15 @@ import {LoginService} from 'src/app/services/login.service'
 })
 export class LoginComponent implements OnInit {
   loginForm : FormGroup
-
+  isIframe = false;
+  loginDisplay = false;
   constructor(
     private router: Router,
     private fb : FormBuilder,
-    private lognService : LoginService
+    private lognService : LoginService,
+    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
+    private authService: MsalService,
+    private msalBroadcastService: MsalBroadcastService
 
   ) {
 
@@ -30,6 +36,7 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.isIframe = window !== window.parent && !window.opener;
   }
 
 
@@ -78,5 +85,24 @@ get email(){
 
 get password(){
   return this.loginForm.get('password')
+}
+
+
+loginPopup() {
+  console.log("ma ward",this.msalGuardConfig.authRequest)
+  if (this.msalGuardConfig.authRequest){
+
+    this.authService.loginPopup({...this.msalGuardConfig.authRequest} as PopupRequest)
+      .subscribe((response: AuthenticationResult) => {
+        console.log("response 1: ",response)
+        this.authService.instance.setActiveAccount(response.account);
+      });
+    } else {
+      this.authService.loginPopup()
+        .subscribe((response: AuthenticationResult) => {
+          console.log("response 2 : ",response)
+          this.authService.instance.setActiveAccount(response.account);
+    });
+  }
 }
 }

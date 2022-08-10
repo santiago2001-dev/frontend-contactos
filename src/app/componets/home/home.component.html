@@ -1,54 +1,248 @@
-<!-- 
-    <nav>
-      <div class="navbar">
-        <div class="container nav-container">
-            <input class="checkbox" type="checkbox" name="" id="" />
-            <div class="hamburger-lines">
+
+
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container container">
+          <input type="checkbox" name="" id="">
+          <div class="hamburger-lines">
               <span class="line line1"></span>
               <span class="line line2"></span>
               <span class="line line3"></span>
-            </div>  
-          <div class="logo">
-            <h1>CONTACTOS</h1>
           </div>
-          <div class="menu-items">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">about</a></li>
-            <li><a href="#">blogs</a></li>
-            <li><a href="#">portfolio</a></li>
-            <li><a href="#">contact</a></li>
+          <ul class="menu-items">
+           <li><a href="#food-menu">Contactos</a></li>
+ 
+              <li><a href="#contact">soporte</a></li>
+              <li routerLink="/inicio" >admin</li>
+          </ul>
+          <img class="logo" src="https://ita-sa.com/wp-content/uploads/2022/05/ITA1.svg" title="ITA(1)" alt="ITA(1)">
+      </div>
+  </nav>
+    <section class="showcase-area" id="showcase">
+      <div class="showcase-container">
+     
+      </div>
+    </section>
+
+    <!-- <section id="about">
+      <div class="about-wrapper container">
+        <div class="about-text">
+          <p class="small">About Us</p>
+          <h2>We've beem making healthy food last for 10 years</h2>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse ab
+            eos omnis, nobis dignissimos perferendis et officia architecto,
+            fugiat possimus eaque qui ullam excepturi suscipit aliquid optio,
+            maiores praesentium soluta alias asperiores saepe commodi
+            consequatur? Perferendis est placeat facere aspernatur!
+          </p>
+        </div>
+        <div class="about-img">
+          <img src="https://i.postimg.cc/mgpwzmx9/about-photo.jpg" alt="food" />
+        </div>
+      </div>
+    </section> -->
+    <!-- <section id="food">
+      <h2>Types of food</h2>
+      <div class="food-container container">
+        <div class="food-type fruite">
+          <div class="img-container">
+            <img src="https://i.postimg.cc/yxThVPXk/food1.jpg" alt="error" />
+            <div class="img-content">
+              <h3>fruite</h3>
+              <a
+                href="https://en.wikipedia.org/wiki/Fruit"
+                class="btn btn-primary"
+                target="blank"
+                >learn more</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="food-type vegetable">
+          <div class="img-container">
+            <img src="https://i.postimg.cc/Nffm6Rkk/food2.jpg" alt="error" />
+            <div class="img-content">
+              <h3>vegetable</h3>
+              <a
+                href="https://en.wikipedia.org/wiki/Vegetable"
+                class="btn btn-primary"
+                target="blank"
+                >learn more</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="food-type grin">
+          <div class="img-container">
+            <img src="https://i.postimg.cc/76ZwsPsd/food3.jpg" alt="error" />
+            <div class="img-content">
+              <h3>grin</h3>
+              <a
+                href="https://en.wikipedia.org/wiki/Grain"
+                class="btn btn-primary"
+                target="blank"
+                >learn more</a
+              >
+            </div>
           </div>
         </div>
       </div>
-    </nav> -->
-  
-
-  
-    <tr *ngFor="let contact of listContacts">
+    </section> -->
+    <section id="food-menu">
+      <h2 class="food-menu-heading">Contactos de ITA</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <form class="d-flex" [formGroup]="search" (submit)="obtenerContactos()">
+        <input formControlName="busqueda" class="form-control me-2" type="search" placeholder=""
+          aria-label="Search">
+        <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+      <div class="food-menu-container container">
+        <div *ngFor="let contact of listContact" class="food-menu-item">
+          <div  class="food-img">
+            <img  src= "{{contact.img}}" alt="" />
+          </div>
+          <div   class="food-description">
+            <h2  class="food-titile">{{contact.name}} {{contact.lastname}}</h2>
+    
+            <p>
+            {{contact.nameuser}} <br>
+             {{contact.proyecto}}<br>
+             {{contact.cargo}}<br>
+             {{contact.area}} <br>
+           
+            </p>
+             <a href="https://wa.me/57{{contact.number}}?text=hola%20{{contact.name}}%20{{contact.lastname}}"> <p class="food-price">{{contact.number}}</p> </a>
+            <a href="mailto:{{contact.email}}" > <p class="food-price">{{contact.email}}</p> </a>
             
-        <td scope="row"><img src= "{{contact.img}}"></td>
-        <td scope="col">{{contact.id}}</td>
-        <td scope="row">{{contact.name}}</td>
-        <td scope="row">{{contact.lastname}}</td>
-        <td scope="row">{{contact.email}}</td>
-        <td scope="row">{{contact.nameuser}}</td>
-        <td scope="row">{{contact.cargo}}</td>
-        <td scope="row">{{contact.area}}</td>
-        <td scope="row">{{contact.proyecto}}</td>
-        <td scope="row">{{contact.number}}</td>
+            <div>
+              <!-- Normal -->
+                <button
+                id="downloadButtonNormal"
+                [vcdDownloadVCard]="vCard"
+                [encoding]="vCardEncoding.none"
+                >
+                Download VCard!
+              </button>
+              <!-- Generate VCard only on Click -->
+              <button  (click)="getContactbyusername(contact.id)"> 
+
+              </button>
+              <button
+
+                id="downloadButtonFunction"
+                vcdDownloadVCard
+                [encoding]="vCardEncoding.none"
+                [generateVCardFunction]="generateVCardOnTheFly"
+                (click)="getContactbyusername(contact.id)"
+              >
+                Download generated VCard!
+              </button>
+            </div>
+          
+            
+
+          </div>
+        </div>
+
         
-        <td>
-     
-    <section *ngFor="let contact of listContacts" class="card">
-      <img src="{{contact.img}}">
-       <h4>{{contact.name}}</h4>
-       <h4>{{contact.lastname}}</h4>
-       <h4>{{contact.email}}</h4>
-       <h4>{{contact.number}}}</h4>
-       <h4>{{contact.cargo}}</h4>
-       <h4>{{contact.proyecto}}</h4>
-       <h4>{{contact.area}}</h4>
-     
-       <i class="fa-solid fa-cart-shopping"></i>
-        
+      </div>
     </section>
+    <!-- <section id="testimonials">
+      <h2 class="testimonial-title">What Our Customers Say</h2>
+      <div class="testimonial-container container">
+        <div class="testimonial-box">
+          <div class="customer-detail">
+            <div class="customer-photo">
+              <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />
+              <p class="customer-name">Ross Lee</p>
+            </div>
+          </div>
+          <div class="star-rating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+          </div>
+          <p class="testimonial-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
+            voluptas cupiditate aspernatur odit doloribus non.
+          </p>
+         
+        </div>
+        <div class="testimonial-box">
+          <div class="customer-detail">
+            <div class="customer-photo">
+              <img
+                src="https://i.postimg.cc/sxd2xCD2/female-photo1.jpg"
+                alt=""
+              />
+              <p class="customer-name">Amelia Watson</p>
+            </div>
+          </div>
+          <div class="star-rating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+          </div>
+          <p class="testimonial-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
+            voluptas cupiditate aspernatur odit doloribus non.
+          </p>
+         
+        </div>
+        <div class="testimonial-box">
+          <div class="customer-detail">
+            <div class="customer-photo">
+              <img src="https://i.postimg.cc/fy90qvkV/male-photo3.jpg" alt="" />
+              <p class="customer-name">Ben Roy</p>
+            </div>
+          </div>
+          <div class="star-rating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+          </div>
+          <p class="testimonial-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
+            voluptas cupiditate aspernatur odit doloribus non.
+          </p>
+         
+        </div>
+      </div>
+    </section> -->
+    <section id="contact">
+      <div class="contact-container container">
+        <div class="contact-img">
+          <img src="https://ita-sa.com/wp-content/uploads/2022/05/Recurso-27-100.jpg" alt="" />
+        </div>
+
+        <div class="form-container">
+          <h2>Contact Us</h2>
+          <input type="text" placeholder="Your Name" />
+          <input type="email" placeholder="E-Mail" />
+          <textarea
+            cols="30"
+            rows="6"
+            placeholder="Type Your Message"
+          ></textarea>
+          <a href="#" class="btn btn-primary">Submit</a>
+        </div>
+      </div>
+    </section>
+    <footer id="footer">
+      <h2>Restraunt &copy; all rights reserved</h2>
+    </footer>
+  
+  <!-- 
+    .................../ JS Code for smooth scrolling /...................... -->
+
+ 

@@ -60,7 +60,7 @@ if (this.search.valid) {
     
   this.usersService.searchUsers(busqueda).subscribe(
     (data) => {
-      console.log(data);
+     
       this.listUsers = data;
     },
     (error) => {
@@ -99,7 +99,7 @@ deleteContact(id : any){
         'el usuaario ha sido eliminado correctamente',
         'success'
       )
-      this.router.navigate(['/admin/contact']); //redirección
+      this.router.navigate(['/admin/users']); //redirección
       this.getUsers()
 
     },error=>{
