@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3308
--- Generation Time: Jul 29, 2022 at 12:12 AM
+-- Generation Time: Aug 10, 2022 at 06:02 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -34,10 +34,10 @@ CREATE TABLE `contactos` (
   `lastname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `nameuser` varchar(10) NOT NULL,
-  `cargo` varchar(50) NOT NULL,
+  `cargo` varchar(100) NOT NULL,
   `area` varchar(100) NOT NULL,
   `number` varchar(10) NOT NULL,
-  `proyecto` varchar(30) NOT NULL,
+  `proyecto` varchar(50) NOT NULL,
   `img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -46,10 +46,8 @@ CREATE TABLE `contactos` (
 --
 
 INSERT INTO `contactos` (`id`, `name`, `lastname`, `email`, `nameuser`, `cargo`, `area`, `number`, `proyecto`, `img`) VALUES
-(1, 'santiago', 'morales', 'santiagomoraless2001@gmail.com', 'vmorales', 'auxiliar de infraestructura', 'TI', '3174310329', 'bogotá', 'http://res.cloudinary.com/decsantg/image/upload/v1656890056/o1boqm1jykpofmnrx69l.jpg'),
-(2, 'alejandro', 'orjuela', 'aorjuela1@gmail.com', 'aorjuela', 'auxiliar de infraestructura', 'TI', '3174310329', 'bogotá', 'http://res.cloudinary.com/decsantg/image/upload/v1656890206/qx8o71qylbe5rf7slniu.jpg'),
-(3, 'ghhhhh', 'jjiji', 'ksmkssk@gmail.com', 'hbhb', 'Recepción', 'Vertical | Apoyo a la Gestión del Ingreso (SAR)', '4545878788', 'Calí', 'http://res.cloudinary.com/decsantg/image/upload/v1659050727/xwy6c5qfem0wevgegqob.png'),
-(4, 'andres', 'estiven', 'estiven@gmail.com', 'sandres', 'Operador de Tecnología en La Información', 'Subdirección Administrativa Operativa (RRHH, Documental, SST, etc)', '3222345690', 'soacha', 'http://res.cloudinary.com/decsantg/image/upload/v1659050886/jfppiaaaomp4ugmnlchx.png');
+(6, 'santiago', 'morales', 'vmorales@ita-sa.com', 'vmorales', 'Auxiliar de Infraestructura', 'Área Administrativa | TIC (Ingeniería)', '3174310329', 'bogota', 'http://res.cloudinary.com/decsantg/image/upload/v1659664146/fxposkhbzz3kacvxe8ch.png'),
+(7, 'yesid ', 'preciado', 'ypreciado@gmail.com', 'ypreciado', 'Presidencia', ' Dirección Administrativa', '3223445030', 'bogota', 'http://res.cloudinary.com/decsantg/image/upload/v1660055335/pulww4v1rywiciom8dvr.jpg');
 
 -- --------------------------------------------------------
 
@@ -72,12 +70,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `email`, `password`, `role`, `img`) VALUES
-(13, 'santiago', 'morales', 'santiagomoraless2001@gmail.com', '$2a$08$E2GDxi8djNB4hPcVJ2Q5QO4YzyxPHb0MaKtSHHFuCDtXkSpmNnikm', 'admin', 'http://res.cloudinary.com/decsantg/image/upload/v1656814503/qmyxcstxnbdwctlj57mn.jpg'),
-(14, 'ansres', 'dddsd', 'assd@gmail.com', 'fdssdfsdf', 'admin', NULL),
-(15, 'alejandro', 'orjuela', 'aorjuela1@gmail.com', '$2a$08$jq7wKj2uLdwwv6QFIRElIumkxpnBTw/I1Sunz/5xrDqiNIvgGnPxW', 'admin', 'http://res.cloudinary.com/decsantg/image/upload/v1659045759/xyhqqdqxgmtptmrzafij.jpg'),
-(16, 'alejandro', 'orjuela', 'aorjuelaaa1@gmail.com', '$2a$08$4bo1EMrppdiiY0V6BiPyU.tiXSgvcxec1k6.sSkKP.Cdqd6qxHBKK', 'admin', 'http://res.cloudinary.com/decsantg/image/upload/v1659045917/tnehzc2x41elfy1olst6.jpg'),
-(17, 'undefined', 'orjuela', 'aorjuelaaae1@gmail.com', '$2a$08$fhvzg0pNCrF/cRTxyraRjePYV8e7zzncUYSzO5PTPQ6I6KwYtIO8.', 'admin', 'http://res.cloudinary.com/decsantg/image/upload/v1659046280/ududdhumkmjn6rvnq75q.jpg'),
-(18, 'admin', 'admin', 'admin@ita-sa.com', '$2a$08$XJxwH7Ctr4mhgn4.57GOCOuw5Fi09eqfa2dGdsVZG7r3gkYE9lnLy', 'undefined', 'http://res.cloudinary.com/decsantg/image/upload/v1659053084/qcto7dmeeus4x7c48zof.png');
+(22, 'admin', 'admin', 'admin2022@ita-sa.com', '$2a$08$PQs/aNJlFyXRz3OWrBtNEuvs4u5bpk8y.heFurbPX83.Q17bYauzW', 'admin', 'http://res.cloudinary.com/decsantg/image/upload/v1660054544/ckb4gghk6f0wafcobsls.png');
 
 --
 -- Indexes for dumped tables
@@ -103,13 +96,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `contactos`
 --
 ALTER TABLE `contactos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
