@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
 body {
-  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+   background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%); 
 }
 
 .login {
@@ -64,13 +64,49 @@ body {
   color: #4b6cb7;
 }
 
-.text-danger{
+/* .text-danger{
 
   padding: 3px;
   color: #721c24;
   background: #f8d7da;
   border-color: #f5c6cb;
   margin-bottom: 5px;
-  
+
   }
-  
+   */
+
+   #MensajeTiendaNew{
+    background: #4b6cb7;
+    color: #fff;
+    border-color: #54b268;
+    animation: tiendaNew 2.72s ease infinite;
+    transform-origin: 50% 50%;
+    -webkit-transition: 0.5s ease-out;
+    -moz-transition: 0.5s ease-out;
+    -o-transition: 0.5s ease-out;
+    transition: 0.5s ease-out;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 15px;
+    clear: both;
+    display: block;
+    width: 100%;
+    -webkit-border-radius: 6px;
+    -moz-border-radis: 6px;
+    border-radius: 6px;
+  }
+  @keyframes tiendaNew{
+    0% { transform:translate(0,0) }
+    4.41177% { transform:translate(5px,0) }
+    8.82353% { transform:translate(0,0) }
+    13.23529% { transform:translate(5px,0) }
+    17.64706% { transform:translate(0,0) }
+    22.05882% { transform:translate(5px,0) }
+    26.47059% { transform:translate(0,0) }
+    100% { transform:translate(0,0) }
+  }
+  #MensajeTiendaNew:hover{
+    background:#969696;
+    color: #fff;
+  }

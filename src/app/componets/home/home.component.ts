@@ -94,10 +94,16 @@ public generateVCardOnTheFly = (): VCard => {
 
 getContactbyusername(id: any){
 
+
   this.ContactsService.getContacByid(id).subscribe(
+    
     data=>{
-  this.name = data[0].name
-  console.log(this.name)
+ 
+      this.name = data[0].name
+  let btn =  document.getElementById('downloadButtonFunction')
+  btn?.click()
+ 
+  
  },error=>{
       console.log(error)
       swal.fire({
@@ -107,11 +113,8 @@ getContactbyusername(id: any){
       })
 
     }
-
   )
-  let btn =  document.getElementById('downloadButtonFunction')
-  btn?.click()
-
+ 
 }
 
 
