@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 listContact : Contacs[] = []
 Contact : Contacs [] = []
 search: FormGroup
-
+ filename  : any
 
   constructor(
     private fb: FormBuilder,
@@ -84,12 +84,14 @@ obtenerContactos(){
 
 
 
-getContactbyusername(id: any){
+vcard(id: any){
 
-this.ContactsService.getContacByid(id).subscribe(
-    
+this.ContactsService.vcard(id).subscribe(
     data=>{
     
+     this.filename = data.vcard
+ 
+    this.downloadPDF(this.filename)
 
   
  },error=>{
@@ -104,6 +106,22 @@ this.ContactsService.getContacByid(id).subscribe(
   )
 
 }
+
+
+
+ downloadPDF(pdf : any) {
+  const linkSource = `data:application/pdf;base64,${pdf}`;
+  const downloadLink = document.createElement("a");
+  const fileName = "vcard.vcf";
+
+  downloadLink.href = linkSource;
+  downloadLink.download = fileName;
+  downloadLink.click();
+}
+
+
+
+//microsoft
 getName () : string | undefined {
   if (this.msalservice.instance.getActiveAccount() == null) {
     return 'unknown'

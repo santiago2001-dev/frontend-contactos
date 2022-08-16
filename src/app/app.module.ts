@@ -22,7 +22,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
  
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HomeComponent } from './componets/home/home.component';
-import { CardComponent } from './componets/card/card.component';
+
 import { NgxVcardModule } from "ngx-vcard";
 
 
@@ -51,7 +51,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     GetContactComponent,
     LoginComponent,
     HomeComponent,
-    CardComponent
+  
   ],
   imports: [
     
@@ -60,8 +60,6 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxQRCodeModule,
-    NgxVcardModule,
     MsalModule
 
 

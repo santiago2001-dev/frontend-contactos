@@ -13,7 +13,9 @@ export class ContactsService {
   urlAdd = 'http://localhost:4040/api/contactos/insert';
   urlUpdate = 'http://localhost:4040/api/contactos/update'
   urlDelete= 'http://localhost:4040/api/contactos/delete'
-  urlGetUsername= 'http://localhost:4040/login'
+
+  urlvcard = 'http://localhost:4040/api/contactos/vcards'
+  urlgetvcard = 'http://localhost:4040/api/contactos/getvcards'
   constructor(
     private http : HttpClient
   ) { }
@@ -49,9 +51,12 @@ deleContact(id: any):Observable<any>{
 
   return this.http.delete(this.urlDelete+'/'+id)
 }
+vcard(id : any):Observable<any>{
 
-getbyUserName(nameuser : any):Observable<any>{
-  return this.http.get(`${this.urlGetUsername}/${nameuser}`)
+  return this.http.get(this.urlvcard+'/'+id)
+}
+getvcard(nameuser : any):Observable<any>{
 
+  return this.http.get(this.urlgetvcard+'/'+nameuser)
 }
 }
