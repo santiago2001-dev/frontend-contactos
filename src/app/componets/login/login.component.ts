@@ -21,22 +21,28 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb : FormBuilder,
     private lognService : LoginService,
-    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
-    private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
+  private  msalservice :MsalService
 
   ) {
 
     this.loginForm = this.fb.group({
      email:['',[Validators.email,Validators.required]],
      password:['',Validators.required]
+     
 
 
     })
    }
 
   ngOnInit(): void {
-    this.isIframe = window !== window.parent && !window.opener;
+    this.msalservice.instance.handleRedirectPromise().then(
+
+      res => {
+        if (res != null && res.account != null) {
+          this.msalservice.instance.setActiveAccount(res.account)
+        }
+      }
+    )
   }
 
 
@@ -87,22 +93,22 @@ get password(){
   return this.loginForm.get('password')
 }
 
-
-loginPopup() {
-  console.log("ma ward",this.msalGuardConfig.authRequest)
-  if (this.msalGuardConfig.authRequest){
-
-    this.authService.loginPopup({...this.msalGuardConfig.authRequest} as PopupRequest)
-      .subscribe((response: AuthenticationResult) => {
-        console.log("response 1: ",response)
-        this.authService.instance.setActiveAccount(response.account);
-      });
-    } else {
-      this.authService.loginPopup()
-        .subscribe((response: AuthenticationResult) => {
-          console.log("response 2 : ",response)
-          this.authService.instance.setActiveAccount(response.account);
-    });
-  }
+isLoggedIn(): boolean {
+  return this.msalservice.instance.getActiveAccount() != null
 }
+
+
+loginMicrosoft(){
+  this.msalservice.loginPopup().subscribe( ( 
+     response : AuthenticationResult)=>{
+        this.msalservice.instance.setActiveAccount(response.account)
+        
+        this.router.navigate(['/'])
+    
+
+  })
+}
+
+
+
 }

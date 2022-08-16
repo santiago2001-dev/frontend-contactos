@@ -13,7 +13,9 @@
            <li><a href="#food-menu">Contactos</a></li>
  
               <li><a href="#contact">soporte</a></li>
-              <li routerLink="/inicio" >admin</li>
+              <li routerLink="/inicio" >entrar</li>
+              <li (click)="
+              logoutMicrosot()" >salir</li>
           </ul>
           <img class="logo" src="https://ita-sa.com/wp-content/uploads/2022/05/ITA1.svg" title="ITA(1)" alt="ITA(1)">
       </div>
@@ -90,7 +92,7 @@
       </div>
     </section> -->
     <section id="food-menu">
-      <h2 class="food-menu-heading">Contactos de ITA</h2>
+      <h2 class="food-menu-heading">Bienvenido {{getName()}}  <br> A los Contactos de ITA</h2>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -118,30 +120,7 @@
              <a href="https://wa.me/57{{contact.number}}?text=hola%20{{contact.name}}%20{{contact.lastname}}"> <p class="food-price">{{contact.number}}</p> </a>
             <a href="mailto:{{contact.email}}" > <p class="food-price">{{contact.email}}</p> </a>
             
-            <div>
-              <!-- Normal -->
-                <button class="btn btn-primary"
-                id="downloadButtonNormal"
-                [vcdDownloadVCard]="vCard"
-                [encoding]="vCardEncoding.none"
-                >
-                Download VCard!
-              </button>
-              <!-- Generate VCard only on Click -->
-              <button  (click)="getContactbyusername(contact.id)"> 
-
-              </button>
-              <!-- <button class="btn btn-primary"
-
-                id="downloadButtonFunction"
-                vcdDownloadVCard
-                [encoding]="vCardEncoding.none"
-                [generateVCardFunction]="generateVCardOnTheFly"
-                (click)="getContactbyusername(contact.id)"
-              >
-                Download generated VCard!
-              </button> -->
-            </div>
+         
           
             
 

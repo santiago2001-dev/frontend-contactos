@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import {AuthGuard} from 'src/app/guards/auth.guard'
+import {LoginMicrosoftGuard} from 'src/app/guards/login-microsoft.guard'
 //compoents
 import { GetUsersComponent } from './componets/get-users/get-users.component';
 import { AddUsersComponent } from './componets/add-users/add-users.component';
@@ -15,7 +16,7 @@ import{LoginComponent} from './componets/login/login.component'
 const routes: Routes = [
 {path : 'admin/contact',component : GetContactComponent,canActivate:[AuthGuard]},
 {path : 'admin/users' ,component: GetUsersComponent,canActivate:[AuthGuard]},
-{path : '',component : HomeComponent},
+{path : '',component : HomeComponent,canActivate:[LoginMicrosoftGuard]},
 {path : 'card/:nameuser', component: CardComponent},
 {path : 'inicio',component : LoginComponent},
 {path : 'admin/create-user',component: AddUsersComponent,canActivate:[AuthGuard]},

@@ -5,9 +5,7 @@ import {busqueda} from 'src/app/models/contacts'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import swal from 'sweetalert2';
-
-import { Name, VCard, VCardEncoding } from 'ngx-vcard';
-import { last } from 'rxjs';
+import { MsalService } from '@azure/msal-angular';
 
 @Component({
   selector: 'app-home',
@@ -20,12 +18,12 @@ listContact : Contacs[] = []
 Contact : Contacs [] = []
 search: FormGroup
 
-public vCardEncoding: typeof VCardEncoding = VCardEncoding;
-public vCard: VCard = { name: { firstNames: 'John', lastNames: 'Doe' } };
+
   constructor(
     private fb: FormBuilder,
     private router :Router,
     private ContactsService :ContactsService,
+    private msalservice :MsalService
    
 
 
@@ -84,25 +82,15 @@ obtenerContactos(){
   }
 }
 
-public generateVCardOnTheFly = (): VCard => {
- 
-  // TODO: Generate the VCard before Download
-  return  {
-    name: { firstNames: this.name, lastNames: "Doe", addtionalNames: "Auto" },
-  };
-};
+
 
 getContactbyusername(id: any){
 
-
-  this.ContactsService.getContacByid(id).subscribe(
+this.ContactsService.getContacByid(id).subscribe(
     
     data=>{
- 
-      this.name = data[0].name
-  let btn =  document.getElementById('downloadButtonFunction')
-  btn?.click()
- 
+    
+
   
  },error=>{
       console.log(error)
@@ -114,9 +102,22 @@ getContactbyusername(id: any){
 
     }
   )
- 
+
+}
+getName () : string | undefined {
+  if (this.msalservice.instance.getActiveAccount() == null) {
+    return 'unknown'
+  }
+
+  return this.msalservice.instance.getActiveAccount()?.name
 }
 
 
+logoutMicrosot(){
+  this.msalservice.logout()
+  
+}
 
 }
+
+
