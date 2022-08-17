@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3308
--- Generation Time: Aug 10, 2022 at 06:02 AM
+-- Generation Time: Aug 17, 2022 at 12:04 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -47,7 +47,29 @@ CREATE TABLE `contactos` (
 
 INSERT INTO `contactos` (`id`, `name`, `lastname`, `email`, `nameuser`, `cargo`, `area`, `number`, `proyecto`, `img`) VALUES
 (6, 'santiago', 'morales', 'vmorales@ita-sa.com', 'vmorales', 'Auxiliar de Infraestructura', 'Área Administrativa | TIC (Ingeniería)', '3174310329', 'bogota', 'http://res.cloudinary.com/decsantg/image/upload/v1659664146/fxposkhbzz3kacvxe8ch.png'),
-(7, 'yesid ', 'preciado', 'ypreciado@gmail.com', 'ypreciado', 'Presidencia', ' Dirección Administrativa', '3223445030', 'bogota', 'http://res.cloudinary.com/decsantg/image/upload/v1660055335/pulww4v1rywiciom8dvr.jpg');
+(7, 'yesid ', 'preciado', 'ypreciado@gmail.com', 'ypreciado', 'Presidencia', ' Dirección Administrativa', '3223445030', 'bogota', 'http://res.cloudinary.com/decsantg/image/upload/v1660055335/pulww4v1rywiciom8dvr.jpg'),
+(8, 'camilo ', 'pineda', 'cpineda@ita-sa.com', 'cpineda', 'Contador', ' Dirección Administrativa', '3043785840', 'bogota', 'http://res.cloudinary.com/decsantg/image/upload/v1660685123/wfjcwnwbd4m38wqdomsw.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `enlaces`
+--
+
+CREATE TABLE `enlaces` (
+  `id` int(11) NOT NULL,
+  `nombre` text NOT NULL,
+  `enlace` text NOT NULL,
+  `img` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `enlaces`
+--
+
+INSERT INTO `enlaces` (`id`, `nombre`, `enlace`, `img`) VALUES
+(2, 'cuenta', 'https://ita-sa.com.co/cuenta', 'http://res.cloudinary.com/decsantg/image/upload/v1660693158/po5accwo8snzuupyoeia.jpg'),
+(3, 'entregadeactvios', 'https://ita-sa.com.co/entregadeactivos', 'http://res.cloudinary.com/decsantg/image/upload/v1660693205/emeuideytzrpbxm9mvyq.jpg');
 
 -- --------------------------------------------------------
 
@@ -83,6 +105,12 @@ ALTER TABLE `contactos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `enlaces`
+--
+ALTER TABLE `enlaces`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -96,7 +124,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `contactos`
 --
 ALTER TABLE `contactos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `enlaces`
+--
+ALTER TABLE `enlaces`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
