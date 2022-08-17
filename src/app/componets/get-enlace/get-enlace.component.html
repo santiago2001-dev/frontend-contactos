@@ -16,7 +16,7 @@
       </div>
     </div>
   
-    <div class="w-100">
+    <!-- <div class="w-100">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
       
        <div class="container-fluid">
@@ -33,7 +33,7 @@
            
             
           </div>
-      </nav>
+      </nav> -->
     
      
       <table class="table">
@@ -43,41 +43,32 @@
             <th scope="col">imagen</th>
             <th scope="col"> id</th>
             <th scope="col"> nombres </th>
-            <th scope="col"> apellidos </th>
-            <th scope="col"> correo </th>
-            <th th scope="col">Nombre de Usuario</th>
-            <th th scope="col">cargo</th>
-            <th th scope="col">area</th>
-            <th th scope="col">proyecto</th>
-            <th th scope="col">celular</th>
+            <th scope="col"> enlace </th>
+     
+
             <!-- <th th scope="col scope="col"> contraseña </th> -->
             
   
-<th><button class="btn btn-dark btn-sm" routerLink="/admin/create-contact">NUEVO</button>
+<th><button class="btn btn-dark btn-sm" routerLink="/admin/create-link">NUEVO</button>
   
             </th>
   
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let contact of listContacts">
+          <tr *ngFor="let contact of listenlaces">
             
             <td scope="row"><img src= "{{contact.img}}"></td>
             <td scope="col">{{contact.id}}</td>
-            <td scope="row">{{contact.name}}</td>
-            <td scope="row">{{contact.lastname}}</td>
-            <td scope="row">{{contact.email}}</td>
-            <td scope="row">{{contact.nameuser}}</td>
-            <td scope="row">{{contact.cargo}}</td>
-            <td scope="row">{{contact.area}}</td>
-            <td scope="row">{{contact.proyecto}}</td>
-            <td scope="row">{{contact.number}}</td>
+            <td scope="row">{{contact.nombre}}</td>
+            <td scope="row">{{contact.enlace}}</td>
+     
             
             <td>
               <div class="options">
                 <i  (click)="deleteContact(contact.id)" class="fa-solid fa-trash"></i>
                 <br>
-                <i [routerLink]="['/admin/update-contact/',(contact.id)]" class="fa-solid fa-file-pen"></i>
+                <i [routerLink]="['/admin/update-link/',(contact.id)]" class="fa-solid fa-file-pen"></i>
   
                 <!-- <li >
                   <ul></ul>
@@ -93,4 +84,4 @@
       </table>
     </div>
   
-  </div>
+  

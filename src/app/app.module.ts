@@ -29,6 +29,8 @@ import { NgxVcardModule } from "ngx-vcard";
 
 import { MsalBroadcastService, MsalGuard, MsalGuardConfiguration, MsalInterceptor, MsalInterceptorConfiguration, MsalModule, MsalRedirectComponent, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG } from '@azure/msal-angular';
 import { BrowserCacheLocation, InteractionType, IPublicClientApplication, LogLevel, PublicClientApplication } from '@azure/msal-browser';
+import { AddEnlaceComponent } from './componets/add-enlace/add-enlace.component';
+import { GetEnlaceComponent } from './componets/get-enlace/get-enlace.component';
 
 
 
@@ -51,6 +53,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     GetContactComponent,
     LoginComponent,
     HomeComponent,
+    AddEnlaceComponent,
+    GetEnlaceComponent,
   
   ],
   imports: [

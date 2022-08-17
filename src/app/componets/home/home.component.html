@@ -10,7 +10,8 @@
               <span class="line line3"></span>
           </div>
           <ul class="menu-items">
-           <li><a href="#food-menu">Contactos</a></li>
+           <li><a href="#contactos">Contactos</a></li>
+           <li><a href="#enlaces">Enlaces</a></li>
  
               <li><a href="#contact">soporte</a></li>
               <li routerLink="/inicio" >entrar</li>
@@ -91,7 +92,7 @@
         </div>
       </div>
     </section> -->
-    <section id="food-menu">
+    <section id="contactos">
       <h2 class="food-menu-heading">Bienvenido {{getName()}}  <br> A los Contactos de ITA</h2>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -121,6 +122,33 @@
             <a href="mailto:{{contact.email}}" > <p class="food-price">{{contact.email}}</p> </a>
             
             <button class="btn btn-primary"  (click)="vcard(contact.id)"> descargar</button>
+        
+            
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="enlaces">
+      <h2 class="food-menu-heading">ACCESOS DIRECTOS</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+  
+      <div class="food-menu-container container">
+        <div *ngFor="let enlaces of listlink" class="food-menu-item">
+          <div  class="food-img">
+            <img  src= "{{enlaces.img}}" alt="" />
+          </div>
+          <div   class="food-description">
+            <h2  class="food-titile">{{enlaces.nombre}} </h2>
+           <a class="btn btn-primary" href="{{enlaces.enlace}}"> IR </a>
+            
+          
         
             
 

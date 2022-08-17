@@ -1,0 +1,48 @@
+<br>
+<div class="container mt-5" id="fondo">
+    <h1 class="title"> {{Titulo}}</h1>
+    <!-- previsualizacion de imagen -->
+    <div *ngIf="previsualizacion"> 
+        <img [src]="previsualizacion">
+        </div>  
+  <br>
+     <form class="form" [formGroup]="enlaceForm" (submit)="addLink()">
+    <input type="hidden" formControlName = "id">
+
+        <div class="container mb-3">
+
+            <input type="text" formControlName="nombre" class="form-control" placeholder="nombre " required>
+            <div class="text-danger"*ngIf="nombre?.dirty &&(nombre?.dirty || nombre?.touched) && enlaceForm.get('name')?.hasError('required')">
+                <!-- <div class="text-danger"*ngIf="enlaceForm.get('name')?.hasError('required')"> -->
+                <span>los campos son <strong>obligatorios</strong></span>
+                </div>
+              </div>
+
+              <div class="container mb-3">
+
+                <input type="text" formControlName="enlace" class="form-control" placeholder="enlace" required>
+                <div class="text-danger"*ngIf="nombre?.dirty &&(enlace?.dirty || enlace?.touched) && enlaceForm.get('enlace')?.hasError('required')">
+                    <!-- <div class="text-danger"*ngIf="enlaceForm.get('name')?.hasError('required')"> -->
+                    <span>los campos son <strong>obligatorios</strong></span>
+                    </div>
+                  
+                
+               
+            </div>
+
+
+         <div class="container mb-3">
+        <input (change)="capturarFile($event)" type="file" class="form-control " formControlName="img" >
+     </div>
+
+   
+        <div class="container mb-3">
+           <button class="btn btn-dark btn-sm"> Enviar</button>
+            <button style="margin-left: 5px;" class="btn btn-dark btn-sm" routerLink="/users"> Volver</button>
+
+        </div>
+
+        <br>
+    </form>
+</div>
+

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactsService } from '../../services/contacts.service';
 import { Contacs } from '../../models/contacts';
+import {enlaces} from 'src/app/models/enlaces'
 import {busqueda} from 'src/app/models/contacts'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import swal from 'sweetalert2';
 import { MsalService } from '@azure/msal-angular';
-
+import {EnlacesService} from 'src/app/services/enlaces.service'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,6 +15,7 @@ import { MsalService } from '@azure/msal-angular';
 })
 export class HomeComponent implements OnInit {
  name: any 
+ listlink : enlaces[] = []
 listContact : Contacs[] = []
 Contact : Contacs [] = []
 search: FormGroup
@@ -23,6 +25,7 @@ search: FormGroup
     private fb: FormBuilder,
     private router :Router,
     private ContactsService :ContactsService,
+    private enlacesserv : EnlacesService,
     private msalservice :MsalService
    
 
@@ -37,6 +40,7 @@ search: FormGroup
 
   ngOnInit(): void {
     this.obtenerContactos();
+    this.getlinks();
   }
 
 
@@ -82,6 +86,21 @@ obtenerContactos(){
   }
 }
 
+
+getlinks(){
+
+  this.enlacesserv.getAlink().subscribe(
+    data =>{
+      this.listlink = data;
+    },error=>{
+      swal.fire({
+        icon: 'error',
+        title: 'contacto no estaq registro en la base de datos ',
+      
+      })
+    }
+  )
+}
 
 
 vcard(id: any){
@@ -135,6 +154,8 @@ logoutMicrosot(){
   this.msalservice.logout()
   
 }
+
+
 
 }
 
