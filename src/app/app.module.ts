@@ -31,6 +31,7 @@ import { MsalBroadcastService, MsalGuard, MsalGuardConfiguration, MsalIntercepto
 import { BrowserCacheLocation, InteractionType, IPublicClientApplication, LogLevel, PublicClientApplication } from '@azure/msal-browser';
 import { AddEnlaceComponent } from './componets/add-enlace/add-enlace.component';
 import { GetEnlaceComponent } from './componets/get-enlace/get-enlace.component';
+import { VcardComponent } from './componets/vcard/vcard.component';
 
 
 
@@ -55,6 +56,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     HomeComponent,
     AddEnlaceComponent,
     GetEnlaceComponent,
+    VcardComponent,
   
   ],
   imports: [

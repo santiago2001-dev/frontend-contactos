@@ -12,14 +12,15 @@ import { AddUsersComponent } from './componets/add-users/add-users.component';
 import { GetContactComponent } from './componets/get-contact/get-contact.component';
 import {AddContactComponent} from './componets/add-contact/add-contact.component';
 import {HomeComponent}  from '../app/componets/home/home.component';
-
-import{LoginComponent} from './componets/login/login.component'
+import {VcardComponent} from 'src/app/componets/vcard/vcard.component'
+import{LoginComponent} from './componets/login/login.component'  
 
 const routes: Routes = [
 {path : 'admin/contact',component : GetContactComponent,canActivate:[AuthGuard]},
 {path : 'admin/users' ,component: GetUsersComponent,canActivate:[AuthGuard]},
 {path : 'admin/enlaces' ,component: GetEnlaceComponent,canActivate:[AuthGuard]},
 {path : '',component : HomeComponent,canActivate:[LoginMicrosoftGuard]},
+{path:'vcard/:nameuser',component: VcardComponent,canActivate:[LoginMicrosoftGuard]},
 {path : 'inicio',component : LoginComponent},
 {path : 'admin/create-link' ,component: AddEnlaceComponent,canActivate:[AuthGuard]},
 {path : 'admin/update-link/:id',component: AddEnlaceComponent,canActivate:[AuthGuard]},

@@ -1,0 +1,19 @@
+
+<br><br><br>
+<div class="container"  *ngFor="let contact of listContact">
+    <div class="container__half-image" >
+    </div>
+    <div class="container__half-content">
+      <h2 class="item-type">{{contact.name}} {{contact.lastname}}</h2>
+      <h2 class="item-type">{{contact.proyecto}}</h2>
+      <h3 class="item-title">{{contact.area}}{{contact.cargo}}</h3>
+      <!-- <p class="item-description">A floral, solar and voluptuous interpretation composed by Olivier Polge, Perfumer-Creator for the House of CHANEL.</p> -->
+      <div class="item-prices">
+        <span class="item-prices__current-price"><a href="https://wa.me/57{{contact.number}}?text=hola%20{{contact.name}}%20{{contact.lastname}}"> <p class="food-price">{{contact.number}}</p> </a>
+        </span>
+        <span class="item-prices__previous-price"><a href="mailto:{{contact.email}}" > <p class="food-price">{{contact.email}}</p> </a>
+        </span>
+      </div>
+      <button (click)="vcard(contact.id)" class="btn btn-positive" type="button">download contact</button>
+    </div>
+  </div>
