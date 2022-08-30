@@ -91,7 +91,7 @@ this.Id = this.aRouter.snapshot.paramMap.get('id');
         showConfirmButton: false,
         timer: 1500
       })
-      this.router.navigate(['/admin']);
+      this.router.navigate(['/admin/contact']);
     },
       
       error=>{

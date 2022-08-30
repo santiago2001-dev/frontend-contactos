@@ -1,104 +1,20 @@
-body {
-    background-color: lightgray;
-  }
+.container a {
+  color:white;
+  text-decoration: none;
   
-  .container {
-    display: flex;
-    border-radius: 1em;
-    background-color: white;
-    max-width: 500px;
-    margin: 0 auto;
-    box-shadow: 0 0 20px -2px;
-  }
   
-  .container__half-image {
-    flex: 1;
-    background-image: url("https://source.unsplash.com/collection/928423/beach-costal");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    padding: 2em;
-    border-top-left-radius: 1em;
-    border-bottom-left-radius: 1em;
-  }
   
-  .container__half-content {
-    padding: 2em;
-    flex: 1;
-  }
+}
+
+.center{
   
-  .item-type {
-    color: #767676;
-    text-transform: uppercase;
-    font: 1rem serif;
-    margin-top: 0;
-  }
+  display: flex;
+  justify-content: center;
+}
+.center img {
   
-  .item-title {
-    color: black;
-    font: bold 1.75rem/1.1 serif;
-    margin: 0.625em 0;
-  }
+  border-radius:150px;
   
-  .item-description {
-    font: 1rem/1.4 serif;
-  }
-  
-  .item-prices {
-    display: flex;
-    gap: 1em;
-    margin: 1em 0;
-  }
-  
-  .item-prices__current-price {
-    color: green;
-    font: bold 2rem/1.1 serif;
-  }
-  
-  .item-prices__previous-price {
-    color: #d7d7d7;
-    font: bold 1rem/1.1 serif;
-    place-self: center;
-    text-decoration: line-through;
-  }
-  
-  .btn {
-    color: white;
-    font: 1em/1.1 serif;
-    font-weight: bold;
-    padding: 1em 2em;
-    width: 100%;
-    border-radius: 1em;
-    border: none;
-  }
-  
-  .btn:hover {
-    filter: brightness(1.5);
-    transition-duration: 0.25s;
-    transition-property: filter;
-  }
-  
-  .btn:active {
-    transform: translateY(3px);
-  }
-  
-  .btn-positive {
-    background-color: darkgreen;
-  }
-  
-  @media screen and (max-width: 600px) {
-    body {
-      margin: 2em;
-    }
-  
-    .container {
-      flex-flow: column nowrap;
-    }
-  
-    .container__half-image {
-      border-top-right-radius: 1em;
-      border-bottom-left-radius: 0;
-      min-height: 200px;
-    }
-  }
-  
+
+}
+

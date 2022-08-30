@@ -93,7 +93,7 @@
       </div>
     </section> -->
     <section id="contactos">
-      <h2 class="food-menu-heading">Bienvenido {{getName()}}  <br> A los Contactos de ITA</h2>
+      <h2 class="food-menu-heading">Bienvenido {{getName()}}  <br> a los Contactos de ITA</h2>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -112,20 +112,33 @@
             <h2  class="food-titile">{{contact.name}} {{contact.lastname}}</h2>
     
             <p>
-            {{contact.nameuser}} <br>
+             <strong> usuario :</strong> <br>
+             {{contact.nameuser}} <br>
+             <strong>proyecto :</strong> <br>
              {{contact.proyecto}}<br>
+             <strong > cargo :</strong> <br>
              {{contact.cargo}}<br>
+             <strong> area: </strong> <br>
              {{contact.area}} <br>
            
             </p>
-             <a href="https://wa.me/57{{contact.number}}?text=hola%20{{contact.name}}%20{{contact.lastname}}"> <p class="food-price">{{contact.number}}</p> </a>
-            <a href="mailto:{{contact.email}}" > <p class="food-price">{{contact.email}}</p> </a>
+            <p>
+            <strong> número:</strong> <br>
+            {{contact.number}}<br>
+             <strong> email :</strong> <br>
+             {{contact.email}}<br>
+            </p> 
+            <div class="container">
+            <a href="https://wa.me/57{{contact.number}}?text=hola%20{{contact.name}}%20{{contact.lastname}}" class="card-link"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:{{contact.email}}" class="card-link"><i class="fa-solid fa-envelope-circle-check"></i></a>
+            </div>
             
-            <button class="btn btn-primary"  (click)="vcard(contact.id)"> descargar</button>
+            <button class="btn btn-dark"  (click)="vcard(contact.id)"> descargar</button>
         
             
 
           </div>
+          
         </div>
 
       </div>
@@ -134,10 +147,10 @@
 
     <section id="enlaces">
       <h2 class="food-menu-heading">ACCESOS DIRECTOS</h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    
+     -->
   
       <div class="food-menu-container container">
         <div *ngFor="let enlaces of listlink" class="food-menu-item">
@@ -146,7 +159,7 @@
           </div>
           <div   class="food-description">
             <h2  class="food-titile">{{enlaces.nombre}} </h2>
-           <a class="btn btn-primary" href="{{enlaces.enlace}}"> IR </a>
+           <a class="btn btn-dark" href="{{enlaces.enlace}}"> IR </a>
             
           
         
@@ -232,7 +245,7 @@
         </div>
 
         <div class="form-container">
-          <h2>Contact Us</h2>
+          <h2>Agenda tu ticked de soporte</h2>
           <input type="text" placeholder="Your Name" />
           <input type="email" placeholder="E-Mail" />
           <textarea
@@ -240,7 +253,7 @@
             rows="6"
             placeholder="Type Your Message"
           ></textarea>
-          <a href="#" class="btn btn-primary">Submit</a>
+          <a href="#" class="btn btn-dark">enviar</a>
         </div>
       </div>
     </section>
