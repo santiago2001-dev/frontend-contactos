@@ -245,15 +245,13 @@
         </div>
 
         <div class="form-container">
+          <form [formGroup]="form" (submit)="sendTiked()">
           <h2>Agenda tu ticked de soporte</h2>
-          <input type="text" placeholder="Your Name" />
-          <input type="email" placeholder="E-Mail" />
-          <textarea
-            cols="30"
-            rows="6"
-            placeholder="Type Your Message"
-          ></textarea>
-          <a href="#" class="btn btn-dark">enviar</a>
+          <input type="text" formControlName="name" placeholder=" Tú nombre" />
+          <input type="email" formControlName="email" placeholder="E-Mail" />
+         <input type="text" formControlName="info" placeholder="información sobre el error">
+          <button class="btn btn-dark">enviar</button>
+        </form>
         </div>
       </div>
     </section>

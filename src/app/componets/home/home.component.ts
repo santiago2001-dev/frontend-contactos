@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactsService } from '../../services/contacts.service';
 import { Contacs } from '../../models/contacts';
+import {info} from '../../models/form';
 import {enlaces} from 'src/app/models/enlaces'
 import {busqueda} from 'src/app/models/contacts'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import swal from 'sweetalert2';
 import { MsalService } from '@azure/msal-angular';
@@ -18,8 +19,10 @@ export class HomeComponent implements OnInit {
  listlink : enlaces[] = []
 listContact : Contacs[] = []
 Contact : Contacs [] = []
+info : Form[]= []
 search: FormGroup
  filename  : any
+ form : FormGroup
 
   constructor(
     private fb: FormBuilder,
@@ -33,6 +36,13 @@ search: FormGroup
     
 
   ) {
+
+    this.form = fb.group({
+      name:['',Validators.required],
+      email: ['',[Validators.email,Validators.required]],
+      info:['',[Validators.required]]
+
+    })
     this.search = fb.group({
       busqueda : ['',Validators.required]
       })
@@ -137,6 +147,56 @@ this.ContactsService.vcard(id).subscribe(
   downloadLink.download = fileName;
   downloadLink.click();
 }
+sendTiked(){
+
+  console.log(this.form)
+  if(this.form.invalid){
+ 
+    swal.fire({
+      icon: 'error',
+      title: 'los campos son obligatorios',
+    
+    })
+  
+  
+  }else{
+    const info : info= {
+      info : this.form.get('info')?.value,
+      emailUs:  this.form.get('email')?.value,
+      name : this.form.get('name')?.value
+    }
+
+    this.ContactsService.ticked(info).subscribe(
+      data=>{
+  
+        swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Correo envíado correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
+  
+        
+  
+      },
+      (error)=>{
+  
+        console.log(error)
+        
+        swal.fire({
+          icon: 'error',
+          title: `algo salio mal intenta de nuevo`,
+        
+        })
+        
+      }
+      
+    )
+  }
+
+}
+
 
 
 

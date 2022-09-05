@@ -14,8 +14,8 @@ export class ContactsService {
   urlUpdate = 'http://localhost:4040/api/contactos/update'
   urlDelete= 'http://localhost:4040/api/contactos/delete'
  urlbyusername = 'http://localhost:4040/api/contactos/by'
-  urlvcard = 'http://localhost:4040/api/contactos/vcards'
-
+  urlvcard = 'http://localhost:4040/api/contactos/vcards' 
+  urlForm =  'http://localhost:4040/api/soporte'
   constructor(
     private http : HttpClient
   ) { }
@@ -61,5 +61,8 @@ vcard(id : any):Observable<any>{
   return this.http.get(this.urlvcard+'/'+id)
 }
 
+ticked(info: any):Observable<any>{
+  return this.http.post(this.urlForm,info);
+}
 
 }
