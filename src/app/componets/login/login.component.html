@@ -22,7 +22,7 @@
 
       <div class="container mb-3">
 
-        <input formControlName="password" type="password" placeholder="password" required />
+        <input formControlName="password" type="password" placeholder="Contraseña" required />
         <div *ngIf="password?.dirty &&(password?.dirty || password?.touched)">
           <div class="container mb-3">
           <div id="MensajeTiendaNew" *ngIf="loginForm.get('password')?.hasError('password')">
@@ -33,7 +33,7 @@
      </div>
     </div>
        
-        <button>login</button> 
+        <button>Entrar</button> 
        
       </form>  
       <br>

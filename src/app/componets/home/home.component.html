@@ -13,10 +13,10 @@
            <li><a href="#contactos">Contactos</a></li>
            <li><a href="#enlaces">Enlaces</a></li>
  
-              <li><a href="#contact">soporte</a></li>
-              <li routerLink="/admin/contact" >entrar</li>
+              <li><a href="#contact">Soporte</a></li>
+              <li routerLink="/admin/contact" >Entrar</li>
               <li (click)="
-              logoutMicrosot()" >salir</li>
+              logoutMicrosot()" >Salir</li>
           </ul>
           <img class="logo" src="https://ita-sa.com/wp-content/uploads/2022/05/ITA1.svg" title="ITA(1)" alt="ITA(1)">
       </div>
@@ -93,7 +93,7 @@
       </div>
     </section> -->
     <section id="contactos">
-      <h2 class="food-menu-heading">Bienvenido {{getName()}}  <br> a los Contactos de ITA</h2>
+      <h2 class="food-menu-heading">Bienvenido {{getName()}}</h2>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -111,29 +111,35 @@
           <div   class="food-description">
             <h2  class="food-titile">{{contact.name}} {{contact.lastname}}</h2>
     
-            <p>
-             <strong> usuario :</strong> <br>
+            <p >
+             <strong> Usuario :</strong> <br>
              {{contact.nameuser}} <br>
-             <strong>proyecto :</strong> <br>
+             <strong >Proyecto :</strong> <br>
              {{contact.proyecto}}<br>
-             <strong > cargo :</strong> <br>
+             <strong > Cargo :</strong> <br>
              {{contact.cargo}}<br>
-             <strong> area: </strong> <br>
+             <strong> Área: </strong> <br>
              {{contact.area}} <br>
            
             </p>
             <p>
-            <strong> número:</strong> <br>
+            <strong> Número:</strong> <br>
             {{contact.number}}<br>
-             <strong> email :</strong> <br>
+             <strong> Email :</strong> <br>
              {{contact.email}}<br>
             </p> 
             <div class="container">
             <a href="https://wa.me/57{{contact.number}}?text=hola%20{{contact.name}}%20{{contact.lastname}}" class="card-link"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="mailto:{{contact.email}}" class="card-link"><i class="fa-solid fa-envelope-circle-check"></i></a>
             </div>
-            
-            <button class="btn btn-dark"  (click)="vcard(contact.id)"> descargar</button>
+            <div class="container">
+                <ngx-qrcode 
+                  [elementType]="elementType" 
+                 [value]="value"
+             cssClass="aclass">
+              </ngx-qrcode>
+            </div>
+            <button class="btn btn-dark" (click)="vcard(contact.id)"> descargar</button>
         
             
 
@@ -159,7 +165,7 @@
           </div>
           <div   class="food-description">
             <h2  class="food-titile">{{enlaces.nombre}} </h2>
-           <a class="btn btn-dark" href="{{enlaces.enlace}}"> IR </a>
+           <a style="color: #FFFFFF;" class="btn btn-dark" href="{{enlaces.enlace}}"> IR </a>
             
           
         
@@ -246,11 +252,11 @@
 
         <div class="form-container">
           <form [formGroup]="form" (submit)="sendTiked()">
-          <h2>Agenda tu ticked de soporte</h2>
+          <h2>Agenda tu ticket de soporte</h2>
           <input type="text" formControlName="name" placeholder=" Tú nombre" />
           <input type="email" formControlName="email" placeholder="E-Mail" />
-         <input type="text" formControlName="info" placeholder="información sobre el error">
-          <button class="btn btn-dark">enviar</button>
+         <input type="text" formControlName="info" placeholder="Información sobre el error">
+          <button class="btn btn-dark">Enviar</button>
         </form>
         </div>
       </div>

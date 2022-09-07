@@ -9,12 +9,19 @@ import { Router, RouterOutlet } from '@angular/router';
 import swal from 'sweetalert2';
 import { MsalService } from '@azure/msal-angular';
 import {EnlacesService} from 'src/app/services/enlaces.service'
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  title = 'vcard'
+  elementType = NgxQrcodeElementTypes.URL
+  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH
+  value = 'https://google.com'
+  
+
  name: any 
  listlink : enlaces[] = []
 listContact : Contacs[] = []
@@ -147,6 +154,7 @@ this.ContactsService.vcard(id).subscribe(
   downloadLink.download = fileName;
   downloadLink.click();
 }
+
 sendTiked(){
 
   console.log(this.form)

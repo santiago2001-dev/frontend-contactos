@@ -66,7 +66,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MsalModule
+    MsalModule,
+    NgxQRCodeModule
 
 
 
