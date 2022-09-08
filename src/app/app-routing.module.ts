@@ -14,21 +14,22 @@ import {AddContactComponent} from './componets/add-contact/add-contact.component
 import {HomeComponent}  from '../app/componets/home/home.component';
 import {VcardComponent} from 'src/app/componets/vcard/vcard.component'
 import{LoginComponent} from './componets/login/login.component'  
-
+import {ScanvcardComponent}from './componets/scanvcard/scanvcard.component'
 const routes: Routes = [
 {path : 'admin/contact',component : GetContactComponent,canActivate:[AuthGuard]},
 {path : 'admin/users' ,component: GetUsersComponent,canActivate:[AuthGuard]},
 {path : 'admin/enlaces' ,component: GetEnlaceComponent,canActivate:[AuthGuard]},
-{path : '',component : HomeComponent,canActivate:[LoginMicrosoftGuard]},
+{path : 'home',component : HomeComponent,canActivate:[LoginMicrosoftGuard]},
 {path:'vcard/:nameuser',component: VcardComponent,canActivate:[LoginMicrosoftGuard]},
-{path : 'inicio',component : LoginComponent},
+{path:'scan/:id',component: ScanvcardComponent},
+{path : 'inicio',component : LoginComponent,canActivate:[AuthGuard]},
 {path : 'admin/create-link' ,component: AddEnlaceComponent,canActivate:[AuthGuard]},
 {path : 'admin/update-link/:id',component: AddEnlaceComponent,canActivate:[AuthGuard]},
 {path : 'admin/create-user',component: AddUsersComponent,canActivate:[AuthGuard]},
 {path : 'admin/update-user/:id',component: AddUsersComponent,canActivate:[AuthGuard]},
 {path : 'admin/create-contact', component: AddContactComponent,canActivate:[AuthGuard]},
 {path : 'admin/update-contact/:id', component: AddContactComponent,canActivate:[AuthGuard]},
-
+{ path: '**', redirectTo: 'home', pathMatch: 'full' },
 
 
 

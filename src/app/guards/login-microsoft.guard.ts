@@ -16,11 +16,11 @@ export class LoginMicrosoftGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (this.authService.instance.getActiveAccount() == null) {
-      this.router.navigate(['inicio'])
+      this.router.navigate(['/inicio'])
       return false;
     }
     
-  
+   
     return true;
   }
 

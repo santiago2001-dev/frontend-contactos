@@ -32,6 +32,7 @@ import { BrowserCacheLocation, InteractionType, IPublicClientApplication, LogLev
 import { AddEnlaceComponent } from './componets/add-enlace/add-enlace.component';
 import { GetEnlaceComponent } from './componets/get-enlace/get-enlace.component';
 import { VcardComponent } from './componets/vcard/vcard.component';
+import { ScanvcardComponent } from './componets/scanvcard/scanvcard.component';
 
 
 
@@ -57,6 +58,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     AddEnlaceComponent,
     GetEnlaceComponent,
     VcardComponent,
+    ScanvcardComponent,
   
   ],
   imports: [

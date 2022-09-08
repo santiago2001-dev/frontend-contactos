@@ -10,6 +10,8 @@ import swal from 'sweetalert2';
 import { MsalService } from '@azure/msal-angular';
 import {EnlacesService} from 'src/app/services/enlaces.service'
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+import { interval, timer } from 'rxjs';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +21,7 @@ export class HomeComponent implements OnInit {
   title = 'vcard'
   elementType = NgxQrcodeElementTypes.URL
   correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH
-  value = 'https://google.com'
+  value :any
   
 
  name: any 
@@ -36,7 +38,8 @@ search: FormGroup
     private router :Router,
     private ContactsService :ContactsService,
     private enlacesserv : EnlacesService,
-    private msalservice :MsalService
+    private msalservice :MsalService,
+    public _location: Location
    
 
 
@@ -72,6 +75,9 @@ obtenerContactos(){
   this.ContactsService.getAllContac().subscribe(
     data =>{
       this.listContact = data;
+    
+      
+    
     },
     error=>{
       swal.fire({
@@ -119,6 +125,35 @@ getlinks(){
   )
 }
 
+generateQr(id : any){
+  this.ContactsService.vcard(id).subscribe(
+    data=>{
+    
+   
+   this.value = data.link
+   const contador = timer(900);
+   contador.subscribe((n =>{
+    window.location.reload()                                 
+
+   }))
+
+    
+      
+  
+ },error=>{
+      console.log(error)
+      swal.fire({
+        icon: 'error',
+        title: 'Sin conexión a la base de datos ',
+      
+      })
+
+    }
+  )
+
+
+
+}
 
 vcard(id: any){
 
@@ -126,9 +161,9 @@ this.ContactsService.vcard(id).subscribe(
     data=>{
     
      this.filename = data.vcard
- 
-    this.downloadPDF(this.filename)
 
+    this.downloadFile(this.filename)
+      
   
  },error=>{
       console.log(error)
@@ -145,8 +180,8 @@ this.ContactsService.vcard(id).subscribe(
 
 
 
- downloadPDF(pdf : any) {
-  const linkSource = `data:application/pdf;base64,${pdf}`;
+ downloadFile(file : any) {
+  const linkSource = `data:application/pdf;base64,${file}`;
   const downloadLink = document.createElement("a");
   const fileName = "vcard.vcf";
 
@@ -154,6 +189,7 @@ this.ContactsService.vcard(id).subscribe(
   downloadLink.download = fileName;
   downloadLink.click();
 }
+
 
 sendTiked(){
 
