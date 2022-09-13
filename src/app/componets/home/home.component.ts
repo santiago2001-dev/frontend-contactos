@@ -11,6 +11,7 @@ import { MsalService } from '@azure/msal-angular';
 import {EnlacesService} from 'src/app/services/enlaces.service'
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 import { interval, timer } from 'rxjs';
+import { ClipboardService } from 'ngx-clipboard';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-home',
@@ -33,13 +34,15 @@ search: FormGroup
  filename  : any
  form : FormGroup
 
+
   constructor(
     private fb: FormBuilder,
     private router :Router,
     private ContactsService :ContactsService,
     private enlacesserv : EnlacesService,
     private msalservice :MsalService,
-    public _location: Location
+    public _location: Location,
+    private _clipboardService: ClipboardService
    
 
 
@@ -61,10 +64,31 @@ search: FormGroup
   ngOnInit(): void {
     this.obtenerContactos();
     this.getlinks();
+    this._clipboardService.copyResponse$.subscribe(re => {
+      if (re.isSuccess) {
+        swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'link en portapeles',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+  });
   }
 
 
+  callServiceToCopy(id : any) {
+    this.ContactsService.vcard(id).subscribe(
+      data=>{
+      
+     
 
+     this._clipboardService.copy(data.linkvcard);                              
+  
+     })
+  
+}
 
 
 obtenerContactos(){

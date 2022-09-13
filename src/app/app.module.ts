@@ -23,8 +23,8 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HomeComponent } from './componets/home/home.component';
 
-import { NgxVcardModule } from "ngx-vcard";
 
+import { ClipboardModule } from 'ngx-clipboard';
 
 
 import { MsalBroadcastService, MsalGuard, MsalGuardConfiguration, MsalInterceptor, MsalInterceptorConfiguration, MsalModule, MsalRedirectComponent, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG } from '@azure/msal-angular';
@@ -69,7 +69,9 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     ReactiveFormsModule,
     HttpClientModule,
     MsalModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    ClipboardModule
+  
 
 
 
