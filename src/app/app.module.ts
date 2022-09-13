@@ -18,7 +18,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 //animacion
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { QRCodeModule } from 'angularx-qrcode';
  
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HomeComponent } from './componets/home/home.component';
@@ -33,7 +33,6 @@ import { AddEnlaceComponent } from './componets/add-enlace/add-enlace.component'
 import { GetEnlaceComponent } from './componets/get-enlace/get-enlace.component';
 import { VcardComponent } from './componets/vcard/vcard.component';
 import { ScanvcardComponent } from './componets/scanvcard/scanvcard.component';
-
 
 
 export function MSALInstanceFactory(): IPublicClientApplication {
@@ -69,8 +68,9 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     ReactiveFormsModule,
     HttpClientModule,
     MsalModule,
-    NgxQRCodeModule,
-    ClipboardModule
+   ClipboardModule,
+   QRCodeModule
+
   
 
 

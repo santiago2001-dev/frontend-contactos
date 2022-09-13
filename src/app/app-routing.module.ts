@@ -20,7 +20,7 @@ const routes: Routes = [
 {path : 'admin/users' ,component: GetUsersComponent,canActivate:[AuthGuard]},
 {path : 'admin/enlaces' ,component: GetEnlaceComponent,canActivate:[AuthGuard]},
 {path : 'home',component : HomeComponent,canActivate:[LoginMicrosoftGuard]},
-{path:'vcard/:nameuser',component: VcardComponent,canActivate:[LoginMicrosoftGuard]},
+{path:'vcard/:nameuser',component: VcardComponent},
 {path:'scan/:id',component: ScanvcardComponent},
 {path : 'inicio',component : LoginComponent,canActivate:[AuthGuard]},
 {path : 'admin/create-link' ,component: AddEnlaceComponent,canActivate:[AuthGuard]},

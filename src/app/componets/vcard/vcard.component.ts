@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContactsService } from '../../services/contacts.service';
 import { Contacs } from '../../models/contacts';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+
 
 import swal from 'sweetalert2';
 import { timer } from 'rxjs';
@@ -16,10 +16,6 @@ export class VcardComponent implements OnInit {
   listContact: Contacs[] = []
   filename  : any
 
-  title = 'vcard'
-  elementType = NgxQrcodeElementTypes.URL
-  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH
-  value :any
   constructor(
     private contactservice : ContactsService,
     private router : Router,
@@ -32,32 +28,7 @@ export class VcardComponent implements OnInit {
     this.getContact()
   }
 
-  generateQr(id : any){
-    this.contactservice.vcard(id).subscribe(
-      data=>{
-      
-     
-     this.value = data.link
-    //  const contador = timer(900);
-    //  contador.subscribe((n =>{
-    //   window.location.reload()                                 
-  
-    //  }))
-    
- },error=>{
-  console.log(error)
-  swal.fire({
-    icon: 'error',
-    title: 'Sin conexión a la base de datos ',
-  
-  })
-
-}
-)
-
-
-
-}
+ 
 
 getContact(){
   if(this.nameUser !==null){
@@ -104,7 +75,7 @@ vcard(id: any){
   
   
    downloadFile(pdf : any) {
-    const linkSource = `data:application/pdf;base64,${pdf}`;
+    const linkSource = `data:application/vcf;base64,${pdf}`;
     const downloadLink = document.createElement("a");
     const fileName = "vcard.vcf";
   

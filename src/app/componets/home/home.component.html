@@ -112,6 +112,9 @@
             <h2  class="food-titile">{{contact.name}} {{contact.lastname}}</h2>
     
             <p >
+              <qrcode elementType="img" [width]="150" qrdata="http://localhost:4200/scan/{{contact.id}}" [errorCorrectionLevel]="'H'">
+
+              </qrcode>
             
              <strong> Usuario :</strong> <br>
              {{contact.nameuser}} <br>
@@ -133,15 +136,11 @@
             <a href="https://wa.me/57{{contact.number}}?text=hola%20{{contact.name}}%20{{contact.lastname}}" class="card-link"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="mailto:{{contact.email}}" class="card-link"><i class="fa-solid fa-envelope-circle-check"></i></a>
               <div class="container">
-                <ngx-qrcode 
-                  [elementType]="elementType" 
-                 [value]="value"
-               cssClass="aclass">
-              </ngx-qrcode>
+             
             </div> 
           </div>
             
-          <button class="btn btn-dark" (click)="generateQr(contact.id)"> generar qr</button>
+    
             <button class="btn btn-dark" (click)="vcard(contact.id)"> descargar</button>
             <button class="btn btn-dark" (click)="callServiceToCopy(contact.id)">Compartir</button>
             
